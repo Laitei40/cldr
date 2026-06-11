@@ -1311,6 +1311,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Cishiwe</type>
 			<type key="ss" type="standard" scope="core">Vuliwe</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Cishiwe</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Vuliwe</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">i-Metric</measurementSystemName>
 			<measurementSystemName type="UK">i-UK</measurementSystemName>
@@ -2362,6 +2366,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3174,7 +3184,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>Isikhathi sase-{0}</regionFormat>
 			<regionFormat type="daylight">{0} Isikhathi sasemini</regionFormat>
@@ -4524,7 +4533,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Isikhathi sase-Apia</generic>
 					<standard>Isikhathi sase-Apia esivamile</standard>
+					<daylight>Isikhathi sase-Apia sasemini</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5187,9 +5198,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Isikhathi sase-Samoa</generic>
 					<standard>Isikhathi sase-Samoa esivamile</standard>
-					<daylight>Isikhathi sase-Samoa sasemini</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

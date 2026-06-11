@@ -82,6 +82,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<parseLenient sample=",">[,，﹐︐ ⹁ ٫]</parseLenient>
 			<parseLenient sample=".">[.．․﹒ ｡]</parseLenient>
 		</parseLenients>
+		<placeholderBoundarySpacing type="digit-digit" scopes="datetime" xml:space="preserve"> </placeholderBoundarySpacing>
 	</characters>
 	<delimiters>
 		<quotationStart>“</quotationStart>
@@ -399,6 +400,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<alias source="locale" path="../../calendar[@type='gregorian']/timeFormats"/>
 				</timeFormats>
 				<dateTimeFormats>
+					<numericSeparators>
+						<alias source="locale" path="../../../calendar[@type='generic']/dateTimeFormats/numericSeparators"/>
+					</numericSeparators>
 					<dateTimeFormatLength type="full">
 						<dateTimeFormat>
 							<pattern>{1} {0}</pattern>
@@ -495,11 +499,11 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<dateFormatItem id="yyyyQQQQ">r(U) QQQQ</dateFormatItem>
 					</availableFormats>
 					<appendItems>
-						<alias source="locale" path="../../../calendar[@type='gregorian']/dateTimeFormats/appendItems"/>
+						<alias source="locale" path="../../../calendar[@type='generic']/dateTimeFormats/appendItems"/>
 					</appendItems>
 					<intervalFormats>
 						<intervalFormatRanges>
-							<alias source="locale" path="../../calendar[@type='gregorian']/dateTimeFormats/intervalFormats/intervalFormatRanges"/>
+							<alias source="locale" path="../../../../calendar[@type='generic']/dateTimeFormats/intervalFormats/intervalFormatRanges"/>
 						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
@@ -801,38 +805,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</dateTimeFormats>
 			</calendar>
 			<calendar type="ethiopic-amete-alem">
-				<months>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/months"/>
-				</months>
-				<days>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/days"/>
-				</days>
-				<quarters>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/quarters"/>
-				</quarters>
-				<dayPeriods>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/dayPeriods"/>
-				</dayPeriods>
-				<eras>
-					<eraNames>
-						<alias source="locale" path="../eraAbbr"/>
-					</eraNames>
-					<eraAbbr>
-						<era type="0">AA</era>
-					</eraAbbr>
-					<eraNarrow>
-						<alias source="locale" path="../eraAbbr"/>
-					</eraNarrow>
-				</eras>
-				<dateFormats>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/dateFormats"/>
-				</dateFormats>
-				<timeFormats>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/timeFormats"/>
-				</timeFormats>
-				<dateTimeFormats>
-					<alias source="locale" path="../../calendar[@type='ethiopic']/dateTimeFormats"/>
-				</dateTimeFormats>
+				<alias source="locale" path="../calendar[@type='ethiopic']"/>
 			</calendar>
 			<calendar type="generic">
 				<months>
@@ -1948,108 +1921,16 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</dateTimeFormats>
 			</calendar>
 			<calendar type="islamic-civil">
-				<months>
-					<alias source="locale" path="../../calendar[@type='islamic']/months"/>
-				</months>
-				<days>
-					<alias source="locale" path="../../calendar[@type='islamic']/days"/>
-				</days>
-				<quarters>
-					<alias source="locale" path="../../calendar[@type='islamic']/quarters"/>
-				</quarters>
-				<dayPeriods>
-					<alias source="locale" path="../../calendar[@type='islamic']/dayPeriods"/>
-				</dayPeriods>
-				<eras>
-					<alias source="locale" path="../../calendar[@type='islamic']/eras"/>
-				</eras>
-				<dateFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateFormats"/>
-				</dateFormats>
-				<timeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/timeFormats"/>
-				</timeFormats>
-				<dateTimeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateTimeFormats"/>
-				</dateTimeFormats>
+				<alias source="locale" path="../calendar[@type='islamic']"/>
 			</calendar>
 			<calendar type="islamic-rgsa">
-				<months>
-					<alias source="locale" path="../../calendar[@type='islamic']/months"/>
-				</months>
-				<days>
-					<alias source="locale" path="../../calendar[@type='islamic']/days"/>
-				</days>
-				<quarters>
-					<alias source="locale" path="../../calendar[@type='islamic']/quarters"/>
-				</quarters>
-				<dayPeriods>
-					<alias source="locale" path="../../calendar[@type='islamic']/dayPeriods"/>
-				</dayPeriods>
-				<eras>
-					<alias source="locale" path="../../calendar[@type='islamic']/eras"/>
-				</eras>
-				<dateFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateFormats"/>
-				</dateFormats>
-				<timeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/timeFormats"/>
-				</timeFormats>
-				<dateTimeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateTimeFormats"/>
-				</dateTimeFormats>
+				<alias source="locale" path="../calendar[@type='islamic']"/>
 			</calendar>
 			<calendar type="islamic-tbla">
-				<months>
-					<alias source="locale" path="../../calendar[@type='islamic']/months"/>
-				</months>
-				<days>
-					<alias source="locale" path="../../calendar[@type='islamic']/days"/>
-				</days>
-				<quarters>
-					<alias source="locale" path="../../calendar[@type='islamic']/quarters"/>
-				</quarters>
-				<dayPeriods>
-					<alias source="locale" path="../../calendar[@type='islamic']/dayPeriods"/>
-				</dayPeriods>
-				<eras>
-					<alias source="locale" path="../../calendar[@type='islamic']/eras"/>
-				</eras>
-				<dateFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateFormats"/>
-				</dateFormats>
-				<timeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/timeFormats"/>
-				</timeFormats>
-				<dateTimeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateTimeFormats"/>
-				</dateTimeFormats>
+				<alias source="locale" path="../calendar[@type='islamic']"/>
 			</calendar>
 			<calendar type="islamic-umalqura">
-				<months>
-					<alias source="locale" path="../../calendar[@type='islamic']/months"/>
-				</months>
-				<days>
-					<alias source="locale" path="../../calendar[@type='islamic']/days"/>
-				</days>
-				<quarters>
-					<alias source="locale" path="../../calendar[@type='islamic']/quarters"/>
-				</quarters>
-				<dayPeriods>
-					<alias source="locale" path="../../calendar[@type='islamic']/dayPeriods"/>
-				</dayPeriods>
-				<eras>
-					<alias source="locale" path="../../calendar[@type='islamic']/eras"/>
-				</eras>
-				<dateFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateFormats"/>
-				</dateFormats>
-				<timeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/timeFormats"/>
-				</timeFormats>
-				<dateTimeFormats>
-					<alias source="locale" path="../../calendar[@type='islamic']/dateTimeFormats"/>
-				</dateTimeFormats>
+				<alias source="locale" path="../calendar[@type='islamic']"/>
 			</calendar>
 			<calendar type="iso8601">
 				<months>
@@ -2123,6 +2004,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					</timeFormatLength>
 				</timeFormats>
 				<dateTimeFormats>
+					<numericSeparators>
+						<numericDateSeparator>-</numericDateSeparator>
+						<numericTimeSeparator>:</numericTimeSeparator>
+					</numericSeparators>
 					<dateTimeFormatLength type="full">
 						<dateTimeFormat>
 							<pattern>{1} {0}</pattern>
@@ -2209,7 +2094,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					</appendItems>
 					<intervalFormats>
 						<intervalFormatRanges>
-							<alias source="locale" path="../../calendar[@type='gregorian']/dateTimeFormats/intervalFormats/intervalFormatRanges"/>
+							<alias source="locale" path="../../../../calendar[@type='gregorian']/dateTimeFormats/intervalFormats/intervalFormatRanges"/>
 						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
@@ -2845,7 +2730,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<hourFormat>+HH:mm;-HH:mm</hourFormat>
 			<gmtFormat>GMT{0}</gmtFormat>
 			<gmtFormat alt="utc">UTC{0}</gmtFormat>
-			<gmtZeroFormat>GMT</gmtZeroFormat>
 			<gmtUnknownFormat>GMT+?</gmtUnknownFormat>
 			<gmtUnknownFormat alt="utc">UTC+?</gmtUnknownFormat>
 			<dualOffsetFormat>{0}/{1}</dualOffsetFormat>
@@ -4676,6 +4560,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<currency type="CAD">
 				<symbol>CA$</symbol>
 				<symbol alt="narrow">$</symbol>
+			</currency>
+			<currency type="CHF">
+				<symbol>CHF</symbol>
+				<symbol alt="narrow">Fr.</symbol>
 			</currency>
 			<currency type="CLP">
 				<symbol alt="narrow">$</symbol>

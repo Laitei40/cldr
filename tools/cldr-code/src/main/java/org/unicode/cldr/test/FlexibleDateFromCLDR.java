@@ -24,6 +24,7 @@ import java.util.TreeMap;
 import org.unicode.cldr.util.CLDRFile;
 import org.unicode.cldr.util.CLDRLocale;
 import org.unicode.cldr.util.DateTimeFormats;
+import org.unicode.cldr.util.Factory;
 import org.unicode.cldr.util.ICUServiceBuilder;
 import org.unicode.cldr.util.XPathParts;
 
@@ -75,10 +76,10 @@ class FlexibleDateFromCLDR {
                         "GuuuuQMMMMwwWddDDDFEEEEaHHmmssSSSvvvv", // bizarre case just for testing
                     });
 
-    public FlexibleDateFromCLDR(CLDRFile cldrFile) {
+    public FlexibleDateFromCLDR(Factory cldrFactory, CLDRFile cldrFile) {
         String localeId = cldrFile.getLocaleID();
         CLDRLocale loc = CLDRLocale.getInstance(localeId);
-        this.icuServiceBuilder = ICUServiceBuilder.forLocale(loc);
+        this.icuServiceBuilder = cldrFactory.getICUServiceBuilder(loc);
         gen = DateTimePatternGenerator.getEmptyInstance(); // for now
         failureMap.clear();
     }
@@ -118,7 +119,9 @@ class FlexibleDateFromCLDR {
                 String pat = gen.getBestPattern(item);
                 String sample = "<can't format>";
                 try {
-                    DateFormat df = icuServiceBuilder.getDateFormat("gregorian", pat);
+                    DateFormat df =
+                            icuServiceBuilder.getDateFormat(
+                                    "gregorian", pat, ICUServiceBuilder.NUMBERING_SYSTEM_DEFAULT);
                     sample = df.format(new Date());
                 } catch (RuntimeException e) {
                 }

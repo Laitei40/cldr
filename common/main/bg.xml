@@ -1260,6 +1260,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">изкл.</type>
 			<type key="ss" type="standard" scope="core">вкл.</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">изкл.</typeValue>
+			<typeValue type="yes" draft="unconfirmed">вкл.</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">метрична</measurementSystemName>
 			<measurementSystemName type="UK">имперска</measurementSystemName>
@@ -1959,7 +1963,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -2075,6 +2079,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2971,7 +2981,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>Гринуич{0}</gmtFormat>
-			<gmtZeroFormat>Гринуич</gmtZeroFormat>
 			<gmtUnknownFormat draft="contributed">Гринуич+?</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">{0} – лятно часово време</regionFormat>
@@ -4321,7 +4330,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Апия</generic>
 					<standard>Апия – стандартно време</standard>
+					<daylight>Апия – лятно часово време</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4984,9 +4995,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Самоанско време</generic>
 					<standard>Самоанско стандартно време</standard>
-					<daylight>Самоанско лятно часово време</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

@@ -1037,6 +1037,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">ပိတ်</type>
 			<type key="ss" type="standard" scope="core">ဖွင့်</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">ပိတ်</typeValue>
+			<typeValue type="yes" draft="unconfirmed">ဖွင့်</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">မက်ထရစ်စနစ်</measurementSystemName>
 			<measurementSystemName type="UK">ဗြိတိန်စနစ်</measurementSystemName>
@@ -1709,7 +1713,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">/</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -1816,6 +1820,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">{1} {0}</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2528,7 +2538,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>{0} အချိန်</regionFormat>
 			<regionFormat type="daylight">{0} နွေရာသီ စံတော်ချိန်</regionFormat>
@@ -3871,7 +3880,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>အပီယာ အချိန်</generic>
 					<standard>အပီယာ စံတော်ချိန်</standard>
+					<daylight>အပီယာ နွေရာသီ အချိန်</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4295,11 +4306,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>ကာဂျစ္စတန် အချိန်</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>သီရိလင်္ကာ အချိန်</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>လိုင်းကျွန်းစု အချိန်</standard>
@@ -4310,13 +4316,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>လော့ဒ်ဟောင် အချိန်</generic>
 					<standard>လော့ဒ်ဟောင် စံတော်ချိန်</standard>
 					<daylight>လော့ဒ်ဟောင် နွေရာသီ အချိန်</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>မကာအို အချိန်</generic>
-					<standard>မကာအို စံတော်ချိန်</standard>
-					<daylight>မကာအို နွေရာသီ အချိန်</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -4532,9 +4531,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>ဆမိုအာ အချိန်</generic>
 					<standard>ဆမိုအာ စံတော်ချိန်</standard>
-					<daylight>ဆမိုးအား နွေရာသီ အချိန်</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

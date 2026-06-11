@@ -6,7 +6,6 @@ package org.unicode.cldr.test;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.TreeMultimap;
-import com.google.myanmartools.ZawgyiDetector;
 import com.ibm.icu.lang.UCharacter;
 import com.ibm.icu.text.Collator;
 import com.ibm.icu.text.DateIntervalInfo;
@@ -57,11 +56,12 @@ import org.unicode.cldr.util.XPathParts;
  */
 public class DisplayAndInputProcessor {
 
-    /** Special PersonName paths that allow empty string, public for testing */
+    /** Special paths that allow empty string, public for testing */
     public static final String NOL_START_PATH = "//ldml/personNames/nameOrderLocales";
 
     public static final String FSR_START_PATH = "//ldml/personNames/foreignSpaceReplacement";
     public static final String NSR_START_PATH = "//ldml/personNames/nativeSpaceReplacement";
+    public static final String PBS_START_PATH = "//ldml/characters/placeholderBoundarySpacing";
 
     public static final String EMPTY_ELEMENT_VALUE = "❮EMPTY❯";
 
@@ -185,7 +185,6 @@ public class DisplayAndInputProcessor {
     private static final CLDRLocale NGOMBA = CLDRLocale.getInstance("jgo");
     private static final CLDRLocale KWASIO = CLDRLocale.getInstance("nmg");
     private static final CLDRLocale HEBREW = CLDRLocale.getInstance("he");
-    private static final CLDRLocale MYANMAR = CLDRLocale.getInstance("my");
     private static final CLDRLocale KYRGYZ = CLDRLocale.getInstance("ky");
     private static final CLDRLocale URDU = CLDRLocale.getInstance("ur");
     private static final CLDRLocale PASHTO = CLDRLocale.getInstance("ps");
@@ -240,10 +239,6 @@ public class DisplayAndInputProcessor {
     private static final char[][] KASHMIRI_CONVERSIONS = {
         {'ۍ', 'ؠ'}
     }; //  wrong char (see CLDR-16595)
-
-    private static final ZawgyiDetector detector = new ZawgyiDetector();
-    private static final Transliterator zawgyiUnicodeTransliterator =
-            Transliterator.getInstance("Zawgyi-my");
 
     private SimpleUnicodeSetFormatter pp = new SimpleUnicodeSetFormatter(); // default collator
     private UnicodeSetPrettyPrinter rawFormatter = new UnicodeSetPrettyPrinter(); // default
@@ -389,7 +384,8 @@ public class DisplayAndInputProcessor {
         if (value.isEmpty()
                 && (path.startsWith(FSR_START_PATH)
                         || path.startsWith(NSR_START_PATH)
-                        || path.startsWith(NOL_START_PATH))) {
+                        || path.startsWith(NOL_START_PATH)
+                        || path.startsWith(PBS_START_PATH))) {
             value = EMPTY_ELEMENT_VALUE;
         }
         return value;
@@ -466,11 +462,11 @@ public class DisplayAndInputProcessor {
         // but prevents it showing up elsewhere by mistake
         value = value.replace(EMPTY_ELEMENT_VALUE, "");
 
-        // all of our values should not have leading or trailing spaces, except insertBetween,
-        // foreignSpaceReplacement, and anything with built-in attribute xml:space="preserve"
+        // all of our values should not have leading or trailing spaces, except these
         if (!path.contains("/insertBetween")
-                && !path.contains("/foreignSpaceReplacement")
-                && !path.contains("/nativeSpaceReplacement")
+                && !path.startsWith(FSR_START_PATH)
+                && !path.startsWith(NSR_START_PATH)
+                && !path.startsWith(PBS_START_PATH)
                 && !path.contains("[@xml:space=\"preserve\"]")
                 && !isUnicodeSet) {
             value = value.trim();
@@ -606,8 +602,6 @@ public class DisplayAndInputProcessor {
         } else if ((locale.childOf(SWISS_GERMAN) || locale.childOf(GERMAN_SWITZERLAND))
                 && !isUnicodeSet) {
             value = standardizeSwissGerman(value);
-        } else if (locale.childOf(MYANMAR) && !isUnicodeSet) {
-            value = standardizeMyanmar(value);
         } else if (locale.childOf(KYRGYZ)) {
             value = replaceChars(path, value, KYRGYZ_CONVERSIONS, false);
         } else if (locale.childOf(URDU) || locale.childOf(PASHTO) || locale.childOf(FARSI)) {
@@ -922,14 +916,6 @@ public class DisplayAndInputProcessor {
             builder.append(c);
         }
         return builder.toString();
-    }
-
-    // Use the myanmar-tools detector.
-    private String standardizeMyanmar(String value) {
-        if (detector.getZawgyiProbability(value) > 0.90) {
-            return zawgyiUnicodeTransliterator.transform(value);
-        }
-        return value;
     }
 
     private String standardizeNgomba(String value) {

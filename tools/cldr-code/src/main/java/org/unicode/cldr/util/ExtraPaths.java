@@ -76,7 +76,9 @@ public class ExtraPaths {
                             // core/extension for language names (languages at modern or moderate)
 
                             "//ldml/localeDisplayNames/languages/language[@type=\"ku\"][@menu=\"core\"]",
-                            "//ldml/localeDisplayNames/languages/language[@type=\"ku\"][@menu=\"extension\"]"));
+                            "//ldml/localeDisplayNames/languages/language[@type=\"ku\"][@menu=\"extension\"]",
+                            "//ldml/localeDisplayNames/typeValues/typeValue[@type=\"yes\"]",
+                            "//ldml/localeDisplayNames/typeValues/typeValue[@type=\"no\"]"));
 
     public static void addConstant(Collection<String> toAddTo) {
         toAddTo.addAll(SingletonHelper.INSTANCE.paths);
@@ -346,13 +348,25 @@ public class ExtraPaths {
 
                     final String typeKeyTypePath =
                             typeKeyPath + String.format("[@type=\"%s\"]", type);
-                    pathsTemp.add(typeKeyTypePath);
+                    // add unless skipped
+                    if (!skipNoncoreType(originalKey, t)) {
+                        pathsTemp.add(typeKeyTypePath);
+                    }
                     // add some of these with [@scope="core"]
                     if (!skipCoreType(k, t)) {
                         pathsTemp.add(typeKeyTypePath + SCOPE_CORE);
                     }
                 }
             }
+        }
+
+        static final Pattern MATCH_LOWERCASE_SCRIPT_CODE = PatternCache.get("^[a-z]{4}$");
+
+        private boolean skipNoncoreType(final String originalKey, String t) {
+            if (originalKey.equals("nu") && MATCH_LOWERCASE_SCRIPT_CODE.matcher(t).matches()) {
+                return true;
+            }
+            return skipNoncoreKeyType.contains(Pair.of(originalKey, t));
         }
 
         // skip these core 'keys' entirely from extraPaths - they are constructed
@@ -371,7 +385,7 @@ public class ExtraPaths {
                         "colCaseLevel", // On/Off
                         "colNormalization", // On/Off
                         "colNumeric", // On/Off
-
+                        "ss", // On/Off
                         // all of the transforms
                         "d0",
                         "h0",
@@ -382,7 +396,31 @@ public class ExtraPaths {
                         "s0",
                         "t0");
 
-        static final Pattern MATCH_LOWERCASE_SCRIPT_CODE = PatternCache.get("^[a-z]{4}$");
+        @SuppressWarnings("null")
+        private static final Set<Pair<String, String>> skipNoncoreKeyType =
+                ImmutableSet.of(
+                        Pair.of("d0", "ascii"),
+                        Pair.of("d0", "lower"),
+                        Pair.of("d0", "title"),
+                        Pair.of("d0", "upper"),
+                        Pair.of("em", "default"),
+                        Pair.of("em", "emoji"),
+                        Pair.of("em", "text"),
+                        Pair.of("fw", "fri"),
+                        Pair.of("fw", "mon"),
+                        Pair.of("fw", "sat"),
+                        Pair.of("fw", "sun"),
+                        Pair.of("fw", "thu"),
+                        Pair.of("fw", "tue"),
+                        Pair.of("fw", "wed"),
+                        Pair.of("lw", "breakall"),
+                        Pair.of("lw", "keepall"),
+                        Pair.of("lw", "normal"),
+                        Pair.of("lw", "phrase"),
+                        Pair.of("m0", "prprname"),
+                        // plus numbers w/ any simple script id
+                        Pair.of("ss", "none"),
+                        Pair.of("ss", "standard"));
 
         private static final boolean skipCoreType(final String k, String t) {
             // always skip these
@@ -397,21 +435,16 @@ public class ExtraPaths {
 
     public static void addLocaleDependent(
             Set<String> toAddTo, Iterable<String> file, String localeID) {
+        if (localeID == null)
+            return; // no locale ID is set, so do not attempt any locale specific processing.
         SupplementalDataInfo.PluralInfo plurals =
                 supplementalData.getPlurals(SupplementalDataInfo.PluralType.cardinal, localeID);
         SupplementalDataInfo.PluralInfo ordinals =
                 supplementalData.getPlurals(SupplementalDataInfo.PluralType.ordinal, localeID);
-        if (DEBUG && (plurals == null || ordinals == null)) {
-            System.err.println(
-                    "No "
-                            + SupplementalDataInfo.PluralType.cardinal
-                            + "  plurals for "
-                            + localeID
-                            + " in "
-                            + supplementalData.getDirectory().getAbsolutePath());
-        }
 
+        if (ordinals == null) return;
         addDayOfMonthPaths(toAddTo, ordinals);
+        if (plurals == null) return;
         addMinimalPairs(toAddTo, plurals, ordinals);
         Set<SupplementalDataInfo.PluralInfo.Count> pluralCounts =
                 Count.LOCALES_USING_OTHER_ONLY_HACK.contains(localeID)

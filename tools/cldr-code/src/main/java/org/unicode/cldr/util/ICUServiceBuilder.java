@@ -6,6 +6,7 @@ import com.ibm.icu.text.DecimalFormat;
 import com.ibm.icu.text.DecimalFormatSymbols;
 import com.ibm.icu.text.MessageFormat;
 import com.ibm.icu.text.NumberFormat;
+import com.ibm.icu.text.PluralRules;
 import com.ibm.icu.text.RuleBasedCollator;
 import com.ibm.icu.text.SimpleDateFormat;
 import com.ibm.icu.text.UTF16;
@@ -22,15 +23,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.ConcurrentHashMap;
 import org.unicode.cldr.util.CLDRFile.Status;
 import org.unicode.cldr.util.DayPeriodInfo.DayPeriod;
 import org.unicode.cldr.util.SupplementalDataInfo.CurrencyNumberInfo;
+import org.unicode.cldr.util.SupplementalDataInfo.PluralInfo.Count;
 
 public class ICUServiceBuilder {
+
+    /**
+     * As a parameter, call for using the default numbering system. This needs to be null for
+     * compatibility with ICU classes such as com.ibm.icu.text.SimpleDateFormat (whose constructor
+     * includes a parameter named "override" which is a numbering system name or null for default).
+     */
+    public static final String NUMBERING_SYSTEM_DEFAULT = null;
+
+    private static final Factory defaultCollationFactory =
+            CLDRConfig.getInstance().getAllCollationFactory();
+
+    public static class ICUServiceFactory {
+        private final Factory cldrFactory;
+        private final Map<CLDRLocale, ICUServiceBuilder> ISBMap = new ConcurrentHashMap<>();
+
+        // TODO CLDR-19409: separate interface for collation?
+
+        public ICUServiceBuilder forLocale(final CLDRLocale loc) {
+            return ISBMap.computeIfAbsent(
+                    loc,
+                    newLoc ->
+                            new ICUServiceBuilder(
+                                    cldrFactory.make(newLoc.getBaseName(), true),
+                                    defaultCollationFactory));
+        }
+
+        public ICUServiceFactory(Factory f) {
+            cldrFactory = f;
+        }
+    }
+
+    @Deprecated
+    public static final ICUServiceBuilder inefficientSingletonServiceBuilder(
+            final CLDRFile resolvedFile) {
+        return new ICUServiceBuilder(resolvedFile, defaultCollationFactory);
+    }
+
     private static final Currency NO_CURRENCY = Currency.getInstance("XXX");
     private static final SupplementalDataInfo supplementalData =
             CLDRConfig.getInstance().getSupplementalDataInfo();
-    private static final Map<CLDRLocale, ICUServiceBuilder> ISBMap = new HashMap<>();
 
     private static final TimeZone utc = TimeZone.getTimeZone("GMT");
     private static final DateFormat iso =
@@ -42,36 +81,23 @@ public class ICUServiceBuilder {
 
     private final CLDRFile cldrFile;
     private final CLDRFile collationFile;
+    private final Factory collationFactory;
 
     /**
-     * This private constructor is meant to be called only by ICUServiceBuilder.forLocale.
-     *
      * @param cldrFile the CLDRFile
      */
-    private ICUServiceBuilder(CLDRFile cldrFile) {
-        this(cldrFile, false /* locIsFake */);
-    }
-
-    /**
-     * This constructor is meant to be called only by the private constructor (with locIsFake =
-     * false) and by unit tests with fictional locale ID such as "xx" or "mul" (with locIsFake =
-     * true) for which ICUServiceBuilder.forLocale won't work
-     *
-     * @param cldrFile the CLDRFile
-     * @param locIsFake true if cldrFile has a fictional locale ID (can't call forLocale)
-     */
-    public ICUServiceBuilder(CLDRFile cldrFile, boolean locIsFake) {
+    private ICUServiceBuilder(CLDRFile cldrFile, Factory collationFactory) {
         if (!cldrFile.isResolved()) {
             throw new IllegalArgumentException("CLDRFile must be resolved");
         }
         this.cldrFile = cldrFile;
-        if (locIsFake) {
-            this.collationFile = null;
-        } else {
-            this.collationFile =
-                    Factory.make(CLDRPaths.COLLATION_DIRECTORY, ".*")
-                            .makeWithFallback(cldrFile.getLocaleID());
-        }
+        this.collationFactory = collationFactory;
+
+        this.collationFile = makeCollationFile(cldrFile.getLocaleID());
+    }
+
+    public CLDRFile makeCollationFile(final String id) {
+        return collationFactory.makeWithFallback(id);
     }
 
     public static String isoDateFormat(Date date) {
@@ -121,26 +147,6 @@ public class ICUServiceBuilder {
         return cldrFile;
     }
 
-    public static ICUServiceBuilder forLocale(CLDRLocale locale) {
-        if (locale == null) {
-            throw new IllegalArgumentException("locale is null");
-        }
-        ICUServiceBuilder result = ISBMap.get(locale);
-
-        if (result == null) {
-            // CAUTION: this fails for files in seed, when called for DAIP, for CLDRModify,
-            // since CLDRPaths.MAIN_DIRECTORY is "common/main" NOT "seed/main".
-            // Fortunately CLDR no longer uses the "seed" directory -- as of 2023 it is empty
-            // except for README files. If CLDR ever uses "seed" again, however, this will
-            // become a problem again.
-            CLDRFile cldrFile =
-                    Factory.make(CLDRPaths.MAIN_DIRECTORY, ".*").make(locale.getBaseName(), true);
-            result = new ICUServiceBuilder(cldrFile);
-            ISBMap.put(locale, result);
-        }
-        return result;
-    }
-
     public RuleBasedCollator getRuleBasedCollator(String type) throws Exception {
         RuleBasedCollator col = cachingIsEnabled ? cacheRuleBasedCollators.get(type) : null;
         if (col == null) {
@@ -172,9 +178,7 @@ public class ICUServiceBuilder {
             String importSource = xpp.getAttributeValue(-1, "source");
             String importType = xpp.getAttributeValue(-1, "type");
             CLDRLocale importLocale = CLDRLocale.getInstance(importSource);
-            CLDRFile importCollationFile =
-                    Factory.make(CLDRPaths.COLLATION_DIRECTORY, ".*")
-                            .makeWithFallback(importLocale.getBaseName());
+            CLDRFile importCollationFile = makeCollationFile(importLocale.getBaseName());
             path = "//ldml/collations/collation[@type=\"" + importType + "\"]/cr";
             rules = importCollationFile.getStringValue(path);
 
@@ -198,14 +202,14 @@ public class ICUServiceBuilder {
     }
 
     public SimpleDateFormat getDateFormat(
-            String calendar, int dateIndex, int timeIndex, String numbersOverride) {
-        String key = cldrFile.getLocaleID() + "," + calendar + "," + dateIndex + "," + timeIndex;
+            String calendar, int dateIndex, int timeIndex, String numberingSystem) {
+        String key = makeDateFormatCacheKey(calendar, dateIndex, timeIndex, numberingSystem);
         SimpleDateFormat result = cachingIsEnabled ? cacheDateFormats.get(key) : null;
         if (result != null) return result.clone();
 
         String pattern = getPattern(calendar, dateIndex, timeIndex);
 
-        result = getFullFormat(calendar, pattern, numbersOverride);
+        result = getFullFormat(calendar, pattern, numberingSystem);
         if (cachingIsEnabled) {
             cacheDateFormats.put(key, result);
         }
@@ -213,12 +217,42 @@ public class ICUServiceBuilder {
         return result.clone();
     }
 
-    public SimpleDateFormat getDateFormat(String calendar, String pattern, String numbersOverride) {
-        String key =
-                cldrFile.getLocaleID() + "," + calendar + ",," + pattern + ",,," + numbersOverride;
+    public static String formatWithOrdinalHack(
+            SimpleDateFormat sdf, String calendar, Date date, CLDRFile cldrFile) {
+        String pattern = sdf.toPattern();
+        if (!pattern.contains("ddd")) {
+            return sdf.format(date);
+        }
+        PluralRules ordinalRules =
+                supplementalData.getPluralRules(
+                        cldrFile.getLocaleID(), PluralRules.PluralType.ORDINAL);
+        if (ordinalRules == null) {
+            return sdf.format(date);
+        }
+        int dayOfMonth = date.getDate();
+        String keyword = ordinalRules.select(dayOfMonth, 0, 0);
+        String path =
+                CldrPathUtilities.dayOfMonthPath(
+                        Count.valueOf(keyword), calendar, "format", "abbreviated");
+        String ordinalPattern = cldrFile.getStringValueWithBailey(path);
+        if (ordinalPattern == null) {
+            ordinalPattern = "{0}missing";
+        }
+        String ordinalString =
+                ordinalPattern.replace(
+                        "{0}", String.valueOf(dayOfMonth)); // TODO fix for native digits
+        // quote to prevent substitutions within the pattern.
+        String newPattern = pattern.replace("ddd", "'" + ordinalString + "'");
+        SimpleDateFormat sdf2 = sdf.clone();
+        sdf2.applyLocalizedPattern(newPattern);
+        return sdf2.format(date);
+    }
+
+    public SimpleDateFormat getDateFormat(String calendar, String pattern, String numberingSystem) {
+        String key = makeDateFormatCacheKey(calendar, pattern, numberingSystem);
         SimpleDateFormat result = cachingIsEnabled ? cacheDateFormats.get(key) : null;
         if (result != null) return result.clone();
-        result = getFullFormat(calendar, pattern, numbersOverride);
+        result = getFullFormat(calendar, pattern, numberingSystem);
         if (cachingIsEnabled) {
             cacheDateFormats.put(key, result);
         }
@@ -226,16 +260,29 @@ public class ICUServiceBuilder {
         return result.clone();
     }
 
-    public SimpleDateFormat getDateFormat(String calendar, String pattern) {
-        return getDateFormat(calendar, pattern, null);
+    private String makeDateFormatCacheKey(
+            String calendar, int dateIndex, int timeIndex, String numberingSystem) {
+        return cldrFile.getLocaleID()
+                + ","
+                + calendar
+                + ","
+                + dateIndex
+                + ","
+                + timeIndex
+                + ","
+                + numberingSystem;
+    }
+
+    private String makeDateFormatCacheKey(String calendar, String pattern, String numberingSystem) {
+        return cldrFile.getLocaleID() + "," + calendar + ",," + pattern + ",,," + numberingSystem;
     }
 
     private SimpleDateFormat getFullFormat(
-            String calendar, String pattern, String numbersOverride) {
+            String calendar, String pattern, String numberingSystem) {
         ULocale curLocaleWithCalendar =
                 new ULocale(cldrFile.getLocaleID() + "@calendar=" + calendar);
         SimpleDateFormat result =
-                new SimpleDateFormat(pattern, numbersOverride, curLocaleWithCalendar); // formatData
+                new SimpleDateFormat(pattern, numberingSystem, curLocaleWithCalendar); // formatData
         // TODO Serious Hack, until ICU #4915 is fixed. => It *was* fixed in ICU 3.8, so now use
         // current locale.(?)
         Calendar cal = Calendar.getInstance(curLocaleWithCalendar);
@@ -260,8 +307,11 @@ public class ICUServiceBuilder {
         result.setNumberFormat(numberFormat.clone());
         // Need to put the field specific number format override formatters back in place, since
         // the previous result.setNumberFormat above nukes them.
-        if (numbersOverride != null && numbersOverride.contains("=")) {
-            String[] overrides = numbersOverride.split(",");
+        // Support numberingSystem attributes with "=".
+        // Example: <pattern numbers="d=thai;m=hans;y=deva">dd/mm/yyyy</pattern>
+        // See: https://www.unicode.org/reports/tr35/tr35-dates.html#Date_Format_Patterns
+        if (numberingSystem != null && numberingSystem.contains("=")) {
+            String[] overrides = numberingSystem.split(",");
             for (String override : overrides) {
                 String[] fields = override.split("=", 2);
                 if (fields.length == 2) {
@@ -1027,13 +1077,14 @@ public class ICUServiceBuilder {
     }
 
     /** Format a dayPeriod string. The dayPeriodOverride, if null, will be fetched from the file. */
-    public String formatDayPeriod(int timeInDay, Context context, Width width) {
+    public String formatDayPeriod(
+            int timeInDay, Context context, Width width, String numberingSystem) {
         DayPeriodInfo dayPeriodInfo =
                 supplementalData.getDayPeriods(DayPeriodInfo.Type.format, cldrFile.getLocaleID());
         DayPeriod period = dayPeriodInfo.getDayPeriod(timeInDay);
         String dayPeriodFormatString =
                 getDayPeriodValue(getDayPeriodPath(period, context, width), "�", null);
-        return formatDayPeriod(timeInDay, period, dayPeriodFormatString);
+        return formatDayPeriod(timeInDay, period, dayPeriodFormatString, numberingSystem);
     }
 
     public String getDayPeriodValue(String path, String fallback, Output<Boolean> real) {
@@ -1065,11 +1116,13 @@ public class ICUServiceBuilder {
     private static final String BHM_PATH =
             "//ldml/dates/calendars/calendar[@type=\"gregorian\"]/dateTimeFormats/availableFormats/dateFormatItem[@id=\"Bhm\"]";
 
-    public String formatDayPeriod(int timeInDay, String dayPeriodFormatString) {
-        return formatDayPeriod(timeInDay, null, dayPeriodFormatString);
+    public String formatDayPeriod(
+            int timeInDay, String dayPeriodFormatString, String numberingSystem) {
+        return formatDayPeriod(timeInDay, null, dayPeriodFormatString, numberingSystem);
     }
 
-    private String formatDayPeriod(int timeInDay, DayPeriod period, String dayPeriodFormatString) {
+    private String formatDayPeriod(
+            int timeInDay, DayPeriod period, String dayPeriodFormatString, String numberingSystem) {
         String pattern = null;
         if ((timeInDay % 6) != 0) { // TODO CLDR-19377: need a better way to test for this
             // dayPeriods other than am, pm, noon, midnight (want patterns with B)
@@ -1105,7 +1158,7 @@ public class ICUServiceBuilder {
         if (pattern == null) {
             pattern = "h:mm \uE000";
         }
-        SimpleDateFormat df = getDateFormat("gregorian", pattern);
+        SimpleDateFormat df = getDateFormat("gregorian", pattern, numberingSystem);
         String formatted = df.format(timeInDay);
         return formatted.replace("\uE000", dayPeriodFormatString);
     }

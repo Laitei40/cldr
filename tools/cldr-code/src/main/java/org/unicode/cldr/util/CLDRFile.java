@@ -739,6 +739,13 @@ public class CLDRFile implements Freezable<CLDRFile>, Iterable<String>, LocaleSt
     }
 
     /**
+     * @return DraftStatus for DPath
+     */
+    public DraftStatus getDraftStatus(String xpath) {
+        return DraftStatus.forXpath(getFullXPath(xpath));
+    }
+
+    /**
      * Get the last modified date (if available) from a distinguished path.
      *
      * @return date or null if not available.
@@ -1317,13 +1324,14 @@ public class CLDRFile implements Freezable<CLDRFile>, Iterable<String>, LocaleSt
             String calendar,
             String length,
             String formatType,
-            ICUServiceBuilder icuServiceBuilder) {
+            ICUServiceBuilder icuServiceBuilder,
+            String numberingSystem) {
         // calls getDateTimeFormatXpath, load the glue pattern, then call
         // glueDateTimeFormatWithGluePattern
         String xpath = this.getDateTimeFormatXpath(calendar, length, formatType);
         String gluePattern = this.getWinningValue(xpath);
         return this.glueDateTimeFormatWithGluePattern(
-                date, time, calendar, gluePattern, icuServiceBuilder);
+                date, time, calendar, gluePattern, icuServiceBuilder, numberingSystem);
     }
 
     public String glueDateTimeFormatWithGluePattern(
@@ -1331,9 +1339,11 @@ public class CLDRFile implements Freezable<CLDRFile>, Iterable<String>, LocaleSt
             String time,
             String calendar,
             String gluePattern,
-            ICUServiceBuilder icuServiceBuilder) {
+            ICUServiceBuilder icuServiceBuilder,
+            String numberingSystem) {
         // uses SimpleDateFormat to get rid of quotes
-        SimpleDateFormat temp = icuServiceBuilder.getDateFormat(calendar, gluePattern, null);
+        SimpleDateFormat temp =
+                icuServiceBuilder.getDateFormat(calendar, gluePattern, numberingSystem);
         TimeZone tempTimeZone = TimeZone.GMT_ZONE;
         Calendar tempCalendar = Calendar.getInstance(tempTimeZone, ULocale.ENGLISH);
         Date tempDate = tempCalendar.getTime();

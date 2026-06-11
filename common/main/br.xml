@@ -4468,6 +4468,11 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -6520,7 +6525,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>UTC{0}</gmtFormat>
-			<gmtZeroFormat>UTC</gmtZeroFormat>
 			<gmtUnknownFormat>UTC+?</gmtUnknownFormat>
 			<regionFormat>eur {0}</regionFormat>
 			<regionFormat type="daylight">eur hañv {0}</regionFormat>
@@ -7787,13 +7791,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>eur hañv Alaska</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic>eur Almaty</generic>
-					<standard>eur cʼhoañv Almaty</standard>
-					<daylight>eur hañv Almaty</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>eur an Amazon</generic>
@@ -7838,7 +7835,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>eur Samoa</generic>
 					<standard>eur cʼhoañv Samoa</standard>
+					<daylight>eur hañv Samoa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -8129,11 +8128,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>eur hañv Greunland ar Cʼhornôg</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>eur cʼhoañv Guam</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>eur cʼhoañv ar Pleg-mor Arab-ha-Pers</standard>
@@ -8267,11 +8261,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<standard>eur Kyrgyzstan</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>eur Sri Lanka</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>eur Line Islands</standard>
@@ -8282,13 +8271,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<generic>eur Lord Howe</generic>
 					<standard>eur cʼhoañv Lord Howe</standard>
 					<daylight>eur hañv Lord Howe</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>eur Macau</generic>
-					<standard>eur cʼhoañv Macau</standard>
-					<daylight>eur hañv Macau</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -8406,11 +8388,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>eur hañv Fernando de Noronha</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>eur Mariana an Norzh</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>eur Novosibirsk</generic>
@@ -8509,9 +8486,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>eur Samoa Amerikan</generic>
 					<standard>eur cʼhoañv Samoa Amerikan</standard>
-					<daylight>eur hañv Samoa Amerikan</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -9747,15 +9722,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 				<displayName count="two">↑↑↑</displayName>
 				<displayName count="few">↑↑↑</displayName>
 				<displayName count="many">a yuanoù Sina (diavaez)</displayName>
-				<displayName count="other">↑↑↑</displayName>
-				<symbol draft="contributed">↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName>dollar Bank poblel Sina</displayName>
-				<displayName count="one">↑↑↑</displayName>
-				<displayName count="two">zollar Bank poblel Sina</displayName>
-				<displayName count="few">↑↑↑</displayName>
-				<displayName count="many">a zollaroù Bank poblel Sina</displayName>
 				<displayName count="other">↑↑↑</displayName>
 				<symbol draft="contributed">↑↑↑</symbol>
 			</currency>

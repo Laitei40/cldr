@@ -7,6 +7,11 @@ env:
 
 on:
   push:
+    # only build on main or maint branches
+    # otherwise, pull requests on the head fork get built twice.
+    branches:
+      - main
+      - maint/*
   pull_request:
   workflow_dispatch:
     inputs:
@@ -277,6 +282,8 @@ jobs:
           || (echo 'Schema failed, rerun GenerateDtd' ; exit 0)
   servertest:
     name: "Docker test cldr-apps"
+    # skip this on head-fork push TODO: CLDR-19335
+    if: github.event_name != 'push' || github.ref == 'refs/heads/main'
     needs:
       - package
     runs-on: ubuntu-latest
@@ -299,20 +306,29 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-servertest-
           servertest-
-    - name: Cache local npm repository
-      uses: actions/cache@v4
-      with:
-        path: ~/.npm
-        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-node-
-          node-
-    - name: Pull Images
+    - name: Setup Docker
+      uses: docker/setup-buildx-action@v4.0.0
+    - name: Pull Containers
       run: docker compose pull -q
       working-directory: tools/cldr-apps
+    - name: Cache Docker layers
+      uses: actions/cache@v4
+      with:
+        path: /tmp/.buildx-cache
+        key: ${{ runner.os }}-buildx-step1-${{ github.sha }}
+        restore-keys: |
+          ${{ runner.os }}-buildx-
+
     - name: Build Containers
-      run: docker compose build
-      working-directory: tools/cldr-apps
+      uses: docker/bake-action@v7
+      with:
+        push: false
+        source: tools/cldr-apps
+        set: |
+          *.tags=unicode-org/cldr-apps-cache:latest
+    # - name: Build Containers (should be already cached)
+    #   run: docker compose build
+    #   working-directory: tools/cldr-apps
     - name: Bringup Containers
       run: docker compose up -d cldr-apps selenium
       working-directory: tools/cldr-apps
@@ -323,17 +339,17 @@ jobs:
       # See tools/cldr-apps/README.md
       run: >
         rm -rf target/webdriver-output &&
-        docker compose run -v ~/.m2/repository:/root/.m2/repository:rw --rm webdriver || ( docker compose exec -it cldr-apps tail /logs/messages.log ; true )
+        docker compose run -v ~/.m2/repository:/root/.m2/repository:rw --rm webdriver
       working-directory: tools/cldr-apps
     - name: Prepare client tests
       run: docker run --rm -v ~/.npm:/root/.npm:rw -v $(pwd)/js:/home/node/app:rw -w /home/node/app node npm ci
       working-directory: tools/cldr-apps
     - name: Run client tests against ST
-      run: docker compose run --rm client-test || ( docker compose exec -it cldr-apps tail /logs/messages.log ; false )
+      run: docker compose run --rm client-test
       working-directory: tools/cldr-apps
     - name: Collect Webdriver Output
+      if: always()  # always do this, so we can get the details.
       run: |
-        ## TODO CLDR-16859 permissions are preventing this from working on linux
         docker compose cp cldr-apps:/logs target/cldr-apps-logs
         cat target/webdriver-output/summary.md >> $GITHUB_STEP_SUMMARY
         echo >> $GITHUB_STEP_SUMMARY
@@ -343,11 +359,13 @@ jobs:
       run: docker compose stop || true
       working-directory: tools/cldr-apps
     - name: Upload cldr-apps-docker.zip
+      if: always()  # always do this, so we can get the details.
       uses: actions/upload-artifact@v7
       with:
         name: cldr-apps-docker
         path: tools/cldr-apps/target/webdriver-output
     - name: Upload cldr-apps-logs.zip
+      if: always()  # always do this, so we can get the details.
       uses: actions/upload-artifact@v7
       with:
         name: cldr-apps-logs

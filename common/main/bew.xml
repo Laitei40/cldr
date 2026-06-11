@@ -2019,6 +2019,11 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone" draft="unconfirmed">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback draft="unconfirmed">↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B" draft="unconfirmed">↑↑↑</greatestDifference>
@@ -2923,7 +2928,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat draft="unconfirmed">+HH.mm;-HH.mm</hourFormat>
 			<gmtFormat draft="unconfirmed">↑↑↑</gmtFormat>
-			<gmtZeroFormat draft="unconfirmed">↑↑↑</gmtZeroFormat>
 			<regionFormat draft="unconfirmed">Waktu {0}</regionFormat>
 			<regionFormat type="daylight" draft="unconfirmed">Waktu Musim Pentèr {0}</regionFormat>
 			<regionFormat type="standard" draft="unconfirmed">Waktu Pakem {0}</regionFormat>
@@ -3932,13 +3936,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight draft="unconfirmed">Waktu Musim Pentèr Alaska</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic draft="unconfirmed">Waktu Almati</generic>
-					<standard draft="unconfirmed">Waktu Pakem Almati</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Almati</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic draft="unconfirmed">Waktu Amason</generic>
@@ -3983,21 +3980,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic draft="unconfirmed">Waktu Apia</generic>
 					<standard draft="unconfirmed">Waktu Pakem Apia</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic draft="unconfirmed">Waktu Akto</generic>
-					<standard draft="unconfirmed">Waktu Pakem Akto</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Akto</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic draft="unconfirmed">Waktu Aktobé</generic>
-					<standard draft="unconfirmed">Waktu Pakem Aktobé</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Aktobé</daylight>
+					<daylight draft="unconfirmed">Waktu Musim Pentèr Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4428,11 +4413,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<standard draft="unconfirmed">Waktu Kirgistan</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard draft="unconfirmed">Waktu Sri Langka</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard draft="unconfirmed">Waktu Pulo Line</standard>
@@ -4443,13 +4423,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<generic draft="unconfirmed">Waktu Lord Howe</generic>
 					<standard draft="unconfirmed">Waktu Pakem Lord Howe</standard>
 					<daylight draft="unconfirmed">Waktu Musim Pentèr Lord Howe</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic draft="unconfirmed">Waktu Makao</generic>
-					<standard draft="unconfirmed">Waktu Pakem Makao</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Makao</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -4646,13 +4619,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<standard draft="unconfirmed">Waktu Piongyang</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic draft="unconfirmed">Waktu Kisilorda</generic>
-					<standard draft="unconfirmed">Waktu Pakem Kisilorda</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Kisilorda</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard draft="unconfirmed">Waktu Réunion</standard>
@@ -4679,9 +4645,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic draft="unconfirmed">Waktu Samoa</generic>
 					<standard draft="unconfirmed">Waktu Pakem Samoa</standard>
-					<daylight draft="unconfirmed">Waktu Musim Pentèr Samoa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

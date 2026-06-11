@@ -1264,7 +1264,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>ߜ߭ߕߖ{0}</gmtFormat>
-			<gmtZeroFormat>ߜ߭ߕߖ</gmtZeroFormat>
 			<regionFormat>{0} ߕߎ߬ߡߊ</regionFormat>
 			<regionFormat type="daylight">{0} ߕߎ߬ߡߊ߬-ߦߟߍߡߊ߲</regionFormat>
 			<regionFormat type="standard">{0} ߕߎ߬ߡߊ߬-ߦߟߍߡߊ߲ߓߊߟߌ</regionFormat>
@@ -2600,7 +2599,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>ߊߔߌߦߊ߫ ߕߎ߬ߡߊ߬ߘߊ</generic>
 					<standard>ߊߔߌߦߊ߫ ߕߎ߬ߡߘߊ߬ ߛߎߡߊ߲ߘߊ߲ߕߊ</standard>
+					<daylight>ߊߔߌߦߊ߫ ߕߟߋ߬ߡߊ߬ ߕߎ߬ߡߘߊ߬ ߛߎߡߊ߲ߘߊ߲ߕߊ</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -3249,9 +3250,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>ߛߊߡߏߥߊ߫ ߕߎ߬ߡߊ߬ߘߊ</generic>
 					<standard>ߛߊߡߏߥߊ߫ ߕߎ߬ߡߘߊ߬ ߛߎߡߊ߲ߘߊ߲ߕߊ</standard>
-					<daylight>ߛߊߡߏߥߊ߫ ߕߟߋ߬ߡߊ߬ ߕߎߡߘߊ</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

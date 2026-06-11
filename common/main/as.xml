@@ -995,6 +995,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">ঃ</type>
 			<type key="ss" type="standard" scope="core">ঃ</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">ঃ</typeValue>
+			<typeValue type="yes" draft="unconfirmed">ঃ</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">মেট্ৰিক</measurementSystemName>
 			<measurementSystemName type="UK">ইউ. কে.</measurementSystemName>
@@ -1598,7 +1602,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">.</numericDateSeparator>
+						<numericDateSeparator draft="provisional">-</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -1706,6 +1710,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2599,7 +2609,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>{0} সময়</regionFormat>
 			<regionFormat type="daylight">{0} (+1) ডেলাইট সময়</regionFormat>
@@ -3939,7 +3948,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>আপিয়াৰ সময়</generic>
 					<standard>আপিয়াৰ মান সময়</standard>
+					<daylight>আপিয়াৰ ডেলাইট সময়</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4591,9 +4602,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>ছামোৱাৰ সময়</generic>
 					<standard>ছামোৱাৰ মান সময়</standard>
-					<daylight>ছামোৱাৰ ডেলাইট সময়</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

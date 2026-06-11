@@ -40,7 +40,15 @@ This is a partial document, describing only the changes to the LDML since the pr
 **Changes in LDML Version 49 (Differences from Version 48.2)**
 
 * [Calendar era `code`s](tr35-dates.md#Calendar_Data) Added length limit
-<!-- CLDR-19274 updated typo in link -->
+<!-- CLDR-5717 updated some example -->
+
+* [`typeValues`](tr35-general.md#type-values) Added typeValues for On/Off translations
+<!-- CLDR-19394 -->
+
+* [`numberFormat`](tr35-numbers.md#Number_Formats) Revise numberFormat description
+<!-- CLDR-18963 -->
+
+* [`dateTime`](tr35-dates.md#Time_Zone_Names) Removed `gmtZeroOffset` item
 
 **Changes in LDML Version 48.2 (Differences from Version 48.1)**
 
@@ -51,6 +59,10 @@ This is a partial document, describing only the changes to the LDML since the pr
     * As part of this, the display name order is changed so that any names for `-u-` items appear _before_ (instead of after) any names for `-t-` items.
 * Specify that missing `<keys>` translations should fall back to the key identifier
 * The section "Enhanced Language Matching" is retitled as [Language Matching Variables](tr35.md#enhanced-language-matching) and clarified.
+
+**Changes in LDML Version 49 (Differences from Version 48.2)**
+* Clarified the process of selecting the best `dateFormatItem` when there is no exact match, and how to use `appendItems` to add missing fields. This includes a clarification of what are date fields and what are time fields, and a note that `appendItems` for date and time fields should be appended before combining them.
+<!-- Updated spec date -->
 
 ### MessageFormat
 
@@ -153,3 +165,4 @@ but make no express or implied representation or warranty of any kind and assume
 This publication is provided “AS-IS” without charge as a convenience to users.
 
 Unicode and the Unicode Logo are registered trademarks of Unicode, Inc. in the United States and other countries.
+<!-- Auto SpecFix Wed Apr 29 15:28:28 UTC 2026 -->

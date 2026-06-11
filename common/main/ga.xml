@@ -1274,6 +1274,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Múchta</type>
 			<type key="ss" type="standard" scope="core">Ar siúl</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Múchta</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Ar siúl</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">Méadrach</measurementSystemName>
 			<measurementSystemName type="UK">RA</measurementSystemName>
@@ -2098,7 +2102,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">/</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -2212,6 +2216,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3294,7 +3304,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>MAG{0}</gmtFormat>
-			<gmtZeroFormat>MAG</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">↑↑↑</regionFormat>
@@ -4613,13 +4622,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Am Samhraidh Alasca</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic>Am Almaty</generic>
-					<standard>Am Caighdeánach Almaty</standard>
-					<daylight>Am Samhraidh Almaty</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>Am na hAmasóine</generic>
@@ -4669,21 +4671,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Am Shamó</generic>
 					<standard>Am Caighdeánach Shamó</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic>Am Aqtau</generic>
-					<standard>Am Caighdeánach Aqtau</standard>
-					<daylight>Am Samhraidh Aqtau</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic>Am Aqtobe</generic>
-					<standard>Am Caighdeánach Aqtobe</standard>
-					<daylight>Am Samhraidh Aqtobe</daylight>
+					<daylight>Am Samhraidh Shamó</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4997,11 +4987,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Am Samhraidh Iarthar na Graonlainne</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>Am Caighdeánach Ghuam</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Am Caighdeánach na Murascaille</standard>
@@ -5142,11 +5127,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Am na Cirgeastáine</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>Am Shrí Lanca</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Am Oileáin na Líne</standard>
@@ -5157,13 +5137,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>Am Lord Howe</generic>
 					<standard>Am Caighdeánach Lord Howe</standard>
 					<daylight>Am Samhraidh Lord Howe</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>Am Mhacao</generic>
-					<standard>Am Caighdeánach Mhacao</standard>
-					<daylight>Am Samhraidh Mhacao</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -5281,11 +5254,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Am Samhraidh Fernando de Noronha</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>Am na nOileán Máirianach Thuaidh</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Am Novosibirsk</generic>
@@ -5365,13 +5333,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Am Pyongyang</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic>Am Qyzylorda</generic>
-					<standard>Am Caighdeánach Qyzylorda</standard>
-					<daylight>Am Samhraidh Qyzylorda</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>Am Réunion</standard>
@@ -5398,9 +5359,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Am Shamó Mheiriceá</generic>
 					<standard>Am Caighdeánach Shamó Mheiriceá</standard>
-					<daylight>Am Samhraidh Shamó Mheiriceá</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -8612,11 +8571,11 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<pattern type="range">↑↑↑</pattern>
 		</miscPatterns>
 		<minimalPairs>
-			<pluralMinimalPairs count="one">{0} cheann, {0} uair, {0} chat, {0} éan, {0} bhróg</pluralMinimalPairs>
-			<pluralMinimalPairs count="two">{0} cheann, {0} uair, {0} chat, {0} éan, {0} bhróig</pluralMinimalPairs>
-			<pluralMinimalPairs count="few">{0} cinn, {0} huaire, {0} chat, {0} éan, {0} bhróg</pluralMinimalPairs>
-			<pluralMinimalPairs count="many">{0} gcinn, {0} n-uaire, {0} gcat, {0} n-éan, {0} mbróg</pluralMinimalPairs>
-			<pluralMinimalPairs count="other">{0} ceann, {0} uair, {0} cat, {0} éan, {0} bróg</pluralMinimalPairs>
+
+
+
+
+
 			<ordinalMinimalPairs ordinal="one">Glac an {0}ú chasadh ar dheis.</ordinalMinimalPairs>
 			<ordinalMinimalPairs ordinal="other">Glac an {0}ú casadh ar dheis.</ordinalMinimalPairs>
 		</minimalPairs>

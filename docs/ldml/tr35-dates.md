@@ -834,9 +834,15 @@ Finally: If the requested skeleton included both seconds and fractional seconds 
 If a client-requested set of fields includes both date and time fields, and if the `availableFormats` data does not include a `dateFormatItem` whose skeleton matches the same set of fields, then the request should be handled as follows:
 
 1. Divide the request into a date fields part and a time fields part.
+    * Date fields are: [year](#dfst-year), [month](#dfst-month), [day](#dfst-day), [era](#dfst-era), [week](#dfst-week), [quarter](#dfst-quarter), and [week day](#dfst-weekday).
+    * Time fields are: [hour](#dfst-hour), [minute](#dfst-minute), [second](#dfst-second), [period](#dfst-period), and [zone](#dfst-zone).
 2. For each part, find the matching `dateFormatItem`, and expand the pattern as above.
-3. Combine the patterns for the two `dateFormatItem`s using the appropriate dateTimeFormat pattern, determined as follows from the requested date fields:
-   * If the requested date fields include wide month (MMMM, LLLL) and weekday name of any length (e.g. E, EEEE, c, cccc), use `<dateTimeFormatLength type="full">`
+    * If there is still no `dateFormatItem` whose skeleton matches the same set of fields, select the one with the greatest number of matching fields (but no extra fields), then use `appendItems` to append any missing fields (see below).
+    * If multiple `dateFormatItem`s with missing fields have the same distance, rank them by their matching fields in the order listed in step 1. For example, if the request is for "HBv", and the locale has `dateFormatItem`s for only "HB" and "Hv", select the "HB" pattern, because "B" has a higher weight than "v", and then use the `appendItem` for "v" (time zone).
+3. Combine the patterns for the two `dateFormatItem`s using the appropriate glue pattern, determined as follows from the requested date fields:
+   * If the date fields part contains *only* a weekday, use `<appendItem request="Time-Day-Of-Week">`.
+   * Otherwise, if the time fields part contains *only* a time zone, use `<appendItem request="Date-Timezone">`.
+   * Otherwise, if the requested date fields include wide month (MMMM, LLLL) and weekday name of any length (e.g. E, EEEE, c, cccc), use `<dateTimeFormatLength type="full">`
    * Otherwise, if the requested date fields include wide month, use `<dateTimeFormatLength type="long">`
    * Otherwise, if the requested date fields include abbreviated month (MMM, LLL), use `<dateTimeFormatLength type="medium">`
    * Otherwise use `<dateTimeFormatLength type="short">`
@@ -848,6 +854,8 @@ If a client-requested set of fields includes both date and time fields, and if t
 ```
 
 In case the best match does not include all the requested calendar fields, the `appendItems` element describes how to append needed fields to one of the existing formats. Each `appendItem` element covers a single calendar field. In the pattern, {0} represents the format string, {1} the data content of the field, and {2} the display name of the field (see [Calendar Fields](#Calendar_Fields)).
+
+Note: as described above `appendItems` for date fields should be appended to the date, and `appendItems` for time fields should be appended to the time, _before_ combining them with the `dateTimeFormat`.
 
 #### <a name="intervalFormats" href="#intervalFormats">Element intervalFormats</a>
 
@@ -1387,11 +1395,10 @@ For examples, see [Day Periods Chart](https://www.unicode.org/cldr/charts/latest
 ## <a name="Time_Zone_Names" href="#Time_Zone_Names">Time Zone Names</a>
 
 ```xml
-<!ELEMENT timeZoneNames (alias | (hourFormat*, gmtFormat*, gmtZeroFormat*, gmtUnknownFormat*, regionFormat*, fallbackFormat*, zone*, metazone*, special*)) >
+<!ELEMENT timeZoneNames (alias | (hourFormat*, gmtFormat*, gmtUnknownFormat*, regionFormat*, fallbackFormat*, zone*, metazone*, special*)) >
 
 <!ELEMENT hourFormat ( #PCDATA ) >
 <!ELEMENT gmtFormat ( #PCDATA ) >
-<!ELEMENT gmtZeroFormat ( #PCDATA ) >
 <!ELEMENT gmtUnknownFormat ( #PCDATA ) >
 
 <!ELEMENT regionFormat ( #PCDATA ) >
@@ -1504,7 +1511,6 @@ The following subelements of `<timeZoneNames>` are used to control the fallback 
     <tr><td>"-1200"</td></tr>
 <tr><td rowspan="2">gmtFormat</td><td>"GMT{0}"</td><td>"GMT-0800"</td></tr>
     <tr><td>"{0}ВпГ"</td><td>"-0800ВпГ"</td></tr>
-<tr><td>gmtZeroFormat</td><td>"GMT"</td><td>Specifies how GMT/UTC with an offset of zero should be represented.</td></tr>
 <tr><td>gmtUnknownFormat</td><td>"GMT"</td><td>Specifies how GMT/UTC with an unknown offset should be represented.</td></tr>
 <tr><td rowspan="2">regionFormat</td><td>"{0} Time"</td><td>"Japan Time"</td></tr>
     <tr><td>"Hora de {0}"</td><td>"Hora de Japón"</td></tr>
@@ -1536,7 +1542,6 @@ _usesMetazone_ can also optionally specify which offset is considered standard t
 
 ```xml
 <timezone type="Europe/Dublin">
-    <usesMetazone mzone="Irish" to="1971-10-31 02:00" stdOffset="+00" dstOffset="+01"/>
     <usesMetazone mzone="GMT" from="1971-10-31 02:00" stdOffset="+00" dstOffset="+01"/>
 </timezone>
 ```
@@ -1634,9 +1639,9 @@ The following subelement of `<metaZones>` provides a mapping from a single Unico
         <usesMetazone mzone="Europe_Central" />
     </timezone>
     ....
-    <timezone type="Asia/Yerevan">
-        <usesMetazone to="1991-09-22 20:00" mzone="Yerevan" />
-        <usesMetazone from="1991-09-22 20:00" mzone="Armenia" />
+    <timezone type="America/Kentucky/Monticello">
+        <usesMetazone to="2000-10-29 07:00" mzone="America_Central"/>
+        <usesMetazone from="2000-10-29 07:00" mzone="America_Eastern"/>
     </timezone>
     ....
 ```

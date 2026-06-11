@@ -1579,6 +1579,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">pois</type>
 			<type key="ss" type="standard" scope="core">päällä</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">pois</typeValue>
+			<typeValue type="yes" draft="unconfirmed">päällä</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">metrinen</measurementSystemName>
 			<measurementSystemName type="UK">brittiläinen</measurementSystemName>
@@ -2601,8 +2605,8 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">/</numericDateSeparator>
-						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
+						<numericTimeSeparator draft="provisional">.</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
 						<dateTimeFormat>
@@ -2716,6 +2720,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0}–{1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3933,7 +3943,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>+H.mm;-H.mm</hourFormat>
 			<gmtFormat>UTC{0}</gmtFormat>
-			<gmtZeroFormat>UTC</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>aikavyöhyke: {0}</regionFormat>
 			<regionFormat type="daylight">{0} (kesäaika)</regionFormat>
@@ -5253,13 +5262,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Alaskan kesäaika</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic>Almatyn aika</generic>
-					<standard>Almatyn normaaliaika</standard>
-					<daylight>Almatyn kesäaika</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>Amazonin aika</generic>
@@ -5304,21 +5306,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Apian aika</generic>
 					<standard>Apian normaaliaika</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic>Aqtaw’n aika</generic>
-					<standard>Aqtaw’n normaaliaika</standard>
-					<daylight>Aqtaw’n kesäaika</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic>Aqtöben aika</generic>
-					<standard>Aqtöben normaaliaika</standard>
-					<daylight>Aqtöben kesäaika</daylight>
+					<daylight>Apian kesäaika</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5614,11 +5604,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Länsi-Grönlannin kesäaika</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>Guamin aika</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Arabiemiirikuntien normaaliaika</standard>
@@ -5759,11 +5744,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Kirgisian aika</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>Sri Lankan aika</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Linesaarten aika</standard>
@@ -5774,13 +5754,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>Lord Howen aika</generic>
 					<standard>Lord Howen normaaliaika</standard>
 					<daylight>Lord Howen kesäaika</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>Macaon aika</generic>
-					<standard>Macaon normaaliaika</standard>
-					<daylight>Macaon kesäaika</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -5898,11 +5871,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Fernando de Noronhan kesäaika</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>Pohjois-Mariaanien aika</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Novosibirskin aika</generic>
@@ -5982,13 +5950,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Pjongjangin aika</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic>Qızılordan aika</generic>
-					<standard>Qızılordan normaaliaika</standard>
-					<daylight>Qızılordan kesäaika</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>Réunionin aika</standard>
@@ -6015,9 +5976,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Samoan aika</generic>
 					<standard>Samoan normaaliaika</standard>
-					<daylight>Samoan kesäaika</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -6769,12 +6728,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				<displayName>Kiinan juan (offshore)</displayName>
 				<displayName count="one">Kiinan juan (offshore)</displayName>
 				<displayName count="other">Kiinan juania (offshore)</displayName>
-				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName>Kiinan kansanpankin dollari</displayName>
-				<displayName count="one">Kiinan kansanpankin dollari</displayName>
-				<displayName count="other">Kiinan kansanpankin dollaria</displayName>
 				<symbol>↑↑↑</symbol>
 			</currency>
 			<currency type="CNY">

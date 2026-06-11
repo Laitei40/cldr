@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.regex.Pattern;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.unicode.cldr.icu.LDMLConstants;
@@ -23,7 +24,7 @@ public class TestExtraPaths {
     }
 
     @ParameterizedTest(name = "{index} locale={0}")
-    @ValueSource(strings = {"de", "ru"})
+    @ValueSource(strings = {"de", "ru", "hsb"})
     public void testKeys(final String localeId) {
         final Set<String> paths = getExtraPathsFor(localeId);
         final String keys[] = {
@@ -39,7 +40,7 @@ public class TestExtraPaths {
             "lw",
             "ms",
             "numbers",
-            "ss",
+            // "ss", Removed in CLDR-19394
             // New keys of interest
             "colAlternate",
             "colBackwards",
@@ -128,8 +129,8 @@ public class TestExtraPaths {
                 "//ldml/localeDisplayNames/types/type[@key=\"ms\"][@type=\"metric\"][@scope=\"core\"]",
                 "//ldml/localeDisplayNames/types/type[@key=\"ms\"][@type=\"uksystem\"][@scope=\"core\"]",
                 "//ldml/localeDisplayNames/types/type[@key=\"ms\"][@type=\"ussystem\"][@scope=\"core\"]",
-                "//ldml/localeDisplayNames/types/type[@key=\"ss\"][@type=\"none\"][@scope=\"core\"]",
-                "//ldml/localeDisplayNames/types/type[@key=\"ss\"][@type=\"standard\"][@scope=\"core\"]"
+                // "//ldml/localeDisplayNames/types/type[@key=\"ss\"][@type=\"none\"][@scope=\"core\"]", Removed, CLDR-19394
+                // "//ldml/localeDisplayNames/types/type[@key=\"ss\"][@type=\"standard\"][@scope=\"core\"]", Removed, CLDR-19394
             };
 
             for (final String path : typeKeys) {
@@ -161,6 +162,17 @@ public class TestExtraPaths {
         assertTrue(missing.isEmpty(), () -> "In XML but not in extraPaths: " + missing);
     }
 
+    // skip these
+    // - skip 4-letter script codes
+    // - skip ss (deprecated in CLDR-19394)
+    private static final Pattern IGNORE_KEY_TYPES =
+            Pattern.compile(
+                    "^.*(\\[@key=\"numbers\"\\]\\[@type=\"[a-z]{4}\"\\]|types/type\\[@key=\"ss\"\\]\\[@type=\"(standard|none)\"\\]\\[@scope=\"core\"\\])$");
+
+    private static final boolean isIgnoredKeyType(final String path) {
+        return IGNORE_KEY_TYPES.matcher(path).matches();
+    }
+
     @ParameterizedTest(name = "{index} locale={0}.xml")
     @ValueSource(strings = {"de", "ru"})
     public void testMissingKeyTypes(final String localeId) {
@@ -169,13 +181,11 @@ public class TestExtraPaths {
         final Set<String> paths = getExtraPathsFor(localeId);
         final Set<String> missing = new TreeSet<>();
         final CLDRFile f = CLDRConfig.getInstance().getCLDRFile(localeId, true);
-        // Relation<R2<String,String>,String> aliases =
-        // CLDRConfig.getInstance().getSupplementalDataInfo().getBcp47Aliases();
         for (Iterator<String> i =
                         f.iteratorWithoutExtras("//ldml/localeDisplayNames/types/type", null);
                 i.hasNext(); ) {
             final String path = i.next();
-            if (!paths.contains(path)) {
+            if (!paths.contains(path) && !isIgnoredKeyType(path)) {
                 missing.add(path);
             }
         }
@@ -193,7 +203,7 @@ public class TestExtraPaths {
                 i.hasNext(); ) {
             final String path = i.next();
             final Level l = cov.getLevel(path);
-            if (path.endsWith("[@scope=\"core\"]")) {
+            if (path.endsWith("[@scope=\"core\"]") && !isIgnoredKeyType(path)) {
                 // should be modern or lower. Some were already lower.
                 assertTrue(Level.MODERN.isAtLeast(l), () -> l + "=" + localeId + ":" + path);
             }
@@ -250,7 +260,7 @@ public class TestExtraPaths {
                             l,
                             () -> localeId + ":" + path + " - expect comprehensive");
                 }
-            } else {
+            } else if (!isIgnoredKeyType(path)) {
                 // CORE
                 if (l48 != null && l48 != Level.COMPREHENSIVE) {
                     // present in v48

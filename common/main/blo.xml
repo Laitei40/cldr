@@ -1453,6 +1453,11 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} halɩ {1}</intervalFormatFallback>
 						<intervalFormatItem id="d">
 							<greatestDifference id="d">d – d</greatestDifference>
@@ -1833,7 +1838,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>{0} Gk</gmtFormat>
-			<gmtZeroFormat>Gk</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>{0} kaakɔŋkɔŋɔ̀</regionFormat>
 			<regionFormat type="daylight">{0} kaakɔŋkɔŋɔ̀ gafʊbaka</regionFormat>
@@ -3176,7 +3180,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Samowa kaakɔŋkɔŋɔ̀</generic>
 					<standard>Samowa kaakɔŋkɔŋɔ̀ ɖeiɖei</standard>
+					<daylight>Samowa kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -3470,11 +3476,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>Grinlanɖ gɩteŋshilelaŋ kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>Guwam kaakɔŋkɔŋɔ̀</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Gɔlf kaakɔŋkɔŋɔ̀</standard>
@@ -3608,11 +3609,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<standard>Kirgistan kaakɔŋkɔŋɔ̀</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>Siri Laŋkaa kaakɔŋkɔŋɔ̀</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Laɩn kaBʊtukǝltǝna kaakɔŋkɔŋɔ̀</standard>
@@ -3623,13 +3619,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<generic>Lɔrɖ Hoo kaakɔŋkɔŋɔ̀</generic>
 					<standard>Lɔrɖ Hoo kaakɔŋkɔŋɔ̀ ɖeiɖei</standard>
 					<daylight>Lɔrɖ Hoo kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>Makawoo kaakɔŋkɔŋɔ̀</generic>
-					<standard>Makawoo kaakɔŋkɔŋɔ̀ ɖeiɖei</standard>
-					<daylight>akawoo kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -3747,11 +3736,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>Fɛrnanɖo ɖe Norɔnya kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>Mariyan kǝbʊtukǝltǝna gʊnyɩpɛnɛlaŋ kaakɔŋkɔŋɔ̀</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Nofosibirk kaakɔŋkɔŋɔ̀</generic>
@@ -3850,9 +3834,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Samowa Amalɩka kaja kaakɔŋkɔŋɔ̀</generic>
 					<standard>Samowa Amalɩka kaja kaakɔŋkɔŋɔ̀ ɖeiɖei</standard>
-					<daylight>Samowa Amalɩka kaja kaakɔŋkɔŋɔ̀ gafʊbaka</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

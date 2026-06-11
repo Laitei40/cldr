@@ -1806,6 +1806,11 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2612,7 +2617,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>UTC{0}</gmtFormat>
-			<gmtZeroFormat>UTC</gmtZeroFormat>
 			<gmtUnknownFormat>UTC+?</gmtUnknownFormat>
 			<regionFormat>Ora {0}</regionFormat>
 			<regionFormat type="daylight">Ora d’istà {0}</regionFormat>
@@ -3949,7 +3953,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Ora de Apia</generic>
 					<standard>Ora normale de Apia</standard>
+					<daylight>Ora d’istà de Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4598,9 +4604,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Ora de le Ìzole Samòa</generic>
 					<standard>Ora normale de le Ìzole Samòa</standard>
-					<daylight>Ora d’istà de le Ìzole Samòa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

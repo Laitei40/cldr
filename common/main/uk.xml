@@ -1321,6 +1321,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">вимкнено</type>
 			<type key="ss" type="standard" scope="core">увімкнено</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">вимкнено</typeValue>
+			<typeValue type="yes" draft="unconfirmed">увімкнено</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">Метрична</measurementSystemName>
 			<measurementSystemName type="UK">Британська</measurementSystemName>
@@ -2232,7 +2236,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">/</numericDateSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -2345,6 +2349,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3703,7 +3713,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>час: {0}</regionFormat>
 			<regionFormat type="daylight">час: {0}, літній</regionFormat>
@@ -5060,7 +5069,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>за часом в Апіа</generic>
 					<standard>за стандартним часом в Апіа</standard>
+					<daylight>за літнім часом в Апіа</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5351,11 +5362,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>за літнім західним часом у Ґренландії</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard draft="provisional">за часом на острові Гуам</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>за часом Перської затоки</standard>
@@ -5494,11 +5500,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<metazone type="Kyrgystan">
 				<long>
 					<standard>за часом у Киргизстані</standard>
-				</long>
-			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard draft="contributed">час: Ланка</standard>
 				</long>
 			</metazone>
 			<metazone type="Line_Islands">
@@ -5707,13 +5708,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>за часом у Пхеньяні</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic draft="contributed">час: Кизилорда</generic>
-					<standard draft="contributed">час: Кизилорда, стандартний</standard>
-					<daylight draft="contributed">час: Кизилорда, літній</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>за часом на острові Реюньйон</standard>
@@ -5740,9 +5734,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>за часом на острові Самоа</generic>
 					<standard>за стандартним часом на острові Самоа</standard>
-					<daylight>за літнім часом на острові Самоа</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -8058,8 +8050,8 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<pluralMinimalPairs count="few">{0} дні</pluralMinimalPairs>
 			<pluralMinimalPairs count="many">{0} днів</pluralMinimalPairs>
 			<pluralMinimalPairs count="other">{0} дня</pluralMinimalPairs>
-			<ordinalMinimalPairs ordinal="few">{0}-я дивізія, {0}-є коло</ordinalMinimalPairs>
-			<ordinalMinimalPairs ordinal="other">{0}-а дивізія, {0}-е коло</ordinalMinimalPairs>
+
+
 			<caseMinimalPairs case="accusative">Знайшли {0}</caseMinimalPairs>
 			<caseMinimalPairs case="dative">Це відповідає {0}</caseMinimalPairs>
 			<caseMinimalPairs case="genitive">Немає {0}</caseMinimalPairs>

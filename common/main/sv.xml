@@ -1539,6 +1539,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">av</type>
 			<type key="ss" type="standard" scope="core">på</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">av</typeValue>
+			<typeValue type="yes" draft="unconfirmed">på</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">SI-enheter</measurementSystemName>
 			<measurementSystemName type="UK">engelska enheter</measurementSystemName>
@@ -2976,7 +2980,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">/</numericDateSeparator>
+						<numericDateSeparator draft="provisional">-</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -3088,6 +3092,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0}–{1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0}–{1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">h B–h B</greatestDifference>
@@ -4277,7 +4287,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>+HH:mm;−HH:mm</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>{0}tid</regionFormat>
 			<regionFormat type="daylight">{0} (sommartid)</regionFormat>
@@ -5593,13 +5602,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Alaska, sommartid</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic draft="contributed">Almatytid</generic>
-					<standard draft="contributed">Almatynormaltid</standard>
-					<daylight draft="contributed">Almatysommartid</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>Amazonastid</generic>
@@ -5644,21 +5646,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Apiatid</generic>
 					<standard>Apia, normaltid</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic draft="contributed">Aqtautid</generic>
-					<standard draft="contributed">Aqtaunormaltid</standard>
-					<daylight draft="contributed">Aqtausommartid</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic draft="contributed">Aqtöbetid</generic>
-					<standard draft="contributed">Aqtöbenormaltid</standard>
-					<daylight draft="contributed">Aqtöbesommartid</daylight>
+					<daylight>Apia, sommartid</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5972,11 +5962,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>västgrönländsk sommartid</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>Guamtid</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Persiska vikentid</standard>
@@ -6117,11 +6102,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>kirgizisk tid</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard draft="contributed">Sri Lankatid</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Lineöarnas tid</standard>
@@ -6132,13 +6112,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>Lord Howetid</generic>
 					<standard>Lord Howe, normaltid</standard>
 					<daylight>Lord Howe, sommartid</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>Macaotid</generic>
-					<standard>Macaonormaltid</standard>
-					<daylight>Macaosommartid</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -6256,11 +6229,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Fernando de Noronha, sommartid</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard draft="contributed">Nordmarianernas tid</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Novosibirsktid</generic>
@@ -6340,13 +6308,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Pyongyangtid</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic draft="contributed">Qyzylordatid</generic>
-					<standard draft="contributed">Qyzylordanormaltid</standard>
-					<daylight draft="contributed">Qyzylordasommartid</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>Réuniontid</standard>
@@ -6373,9 +6334,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>samoansk tid</generic>
 					<standard>samoansk normaltid</standard>
-					<daylight>samoansk sommartid</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -7171,12 +7130,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				<displayName count="one">↑↑↑</displayName>
 				<displayName count="other">↑↑↑</displayName>
 				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName>kinesisk dollar</displayName>
-				<displayName count="one">kinesisk dollar</displayName>
-				<displayName count="other">kinesiska dollar</displayName>
-				<symbol draft="contributed">↑↑↑</symbol>
 			</currency>
 			<currency type="CNY">
 				<displayName>kinesisk yuan</displayName>

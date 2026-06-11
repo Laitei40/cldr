@@ -1297,6 +1297,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Izklopljeno</type>
 			<type key="ss" type="standard" scope="core">Vklopljeno</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Izklopljeno</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Vklopljeno</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">metrični</measurementSystemName>
 			<measurementSystemName type="UK">angleški</measurementSystemName>
@@ -2208,7 +2212,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">/</numericDateSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -2320,6 +2324,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0}–{1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0}–{1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">h B–h B</greatestDifference>
@@ -3746,7 +3756,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>+HH.mm;-HH.mm</hourFormat>
 			<gmtFormat>GMT {0}</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>GMT +?</gmtUnknownFormat>
 			<regionFormat>{0} (lokalni čas)</regionFormat>
 			<regionFormat type="daylight">{0} (poletni čas)</regionFormat>
@@ -5096,7 +5105,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Čas: Apia</generic>
 					<standard>Standardni čas: Apia</standard>
+					<daylight>Poletni čas: Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5759,9 +5770,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Samoanski čas</generic>
 					<standard>Samoanski standardni čas</standard>
-					<daylight>Samoanski poletni čas</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

@@ -979,6 +979,10 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			<type key="ss" type="none" scope="core">Kashe</type>
 			<type key="ss" type="standard" scope="core">Kunna</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Kashe</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Kunna</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">Tsarin awo</measurementSystemName>
 			<measurementSystemName type="UK">Tsarin awon ƙasar Ingila</measurementSystemName>
@@ -1695,6 +1699,11 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2648,7 +2657,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>{0} Lokaci</regionFormat>
 			<regionFormat type="daylight">{0} Lokacin Rana</regionFormat>
@@ -3988,7 +3996,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Lokacin Apia</generic>
 					<standard>Tsayayyen Lokacin Apia</standard>
+					<daylight>Lokacin Rana na Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4637,9 +4647,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Lokacin Samoa</generic>
 					<standard>Tsayayyen Lokacin Samoa</standard>
-					<daylight>Lokacin Rana na Vote Samoa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

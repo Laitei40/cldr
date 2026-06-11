@@ -1278,6 +1278,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Укључено</type>
 			<type key="ss" type="standard" scope="core">Искључено</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Укључено</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Искључено</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">метрички</measurementSystemName>
 			<measurementSystemName type="UK">британски</measurementSystemName>
@@ -2122,6 +2126,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3287,7 +3297,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">{0}, летње време</regionFormat>
@@ -4600,13 +4609,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Аљаска, летње време</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic>Алмати време</generic>
-					<standard>Алмати стандардно време</standard>
-					<daylight>Алмати летње рачунање времена</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>Амазон време</generic>
@@ -4651,21 +4653,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Апија време</generic>
 					<standard>Апија, стандардно време</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic>Акватау време</generic>
-					<standard>Акватау стандардно време</standard>
-					<daylight>Акватау летње рачунање времена</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic>Акутобе време</generic>
-					<standard>Акутобе стандардно време</standard>
-					<daylight>Акутобе летње рачунање времена</daylight>
+					<daylight>Апија, летње време</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4974,11 +4964,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Западни Гренланд, летње време</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>Гуам стандардно време</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Заливско време</standard>
@@ -5119,11 +5104,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Киргистан време</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard>Шри Ланка време</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Острва Лајн време</standard>
@@ -5134,13 +5114,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>Лорд Хов време</generic>
 					<standard>Лорд Хов, стандардно време</standard>
 					<daylight>Лорд Хов, летње време</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic>Макао време</generic>
-					<standard>Макао стандардно време</standard>
-					<daylight>Макао летње рачунање времена</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -5258,11 +5231,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Фернандо де Нороња, летње време</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>Северна Маријанска Острва време</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Новосибирск време</generic>
@@ -5342,13 +5310,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Пјонгјаншко време</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic>Кизилорда време</generic>
-					<standard>Кизилорда стандардно време</standard>
-					<daylight>Кизилорда летње рачунање времена</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>Реинион време</standard>
@@ -5375,9 +5336,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Самоа време</generic>
 					<standard>Самоа, стандардно време</standard>
-					<daylight>Самоа, летње време</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -6170,12 +6129,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				<displayName count="few">кинеска јуана (острвска)</displayName>
 				<displayName count="other">кинеских јуана (острвских)</displayName>
 				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName draft="provisional">Долар кинеске народне банке</displayName>
-				<displayName count="one" draft="provisional">долар кинеске народне банке</displayName>
-				<displayName count="few" draft="provisional">↑↑↑</displayName>
-				<displayName count="other" draft="provisional">долара кинеске народне банке</displayName>
 			</currency>
 			<currency type="CNY">
 				<displayName>кинески јуан</displayName>

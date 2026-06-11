@@ -1440,6 +1440,10 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			<type key="t0" type="und">↑↑↑</type>
 			<type key="va" type="posix">↑↑↑</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">↑↑↑</typeValue>
+			<typeValue type="yes" draft="unconfirmed">↑↑↑</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">↑↑↑</measurementSystemName>
 			<measurementSystemName type="UK">↑↑↑</measurementSystemName>
@@ -2587,6 +2591,12 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -4032,7 +4042,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">↑↑↑</regionFormat>
@@ -5375,7 +5384,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
+					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5681,11 +5692,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard draft="contributed">↑↑↑</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>↑↑↑</standard>
@@ -5949,11 +5955,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard draft="contributed">↑↑↑</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>↑↑↑</generic>
@@ -6052,9 +6053,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
-					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -6688,11 +6687,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 				<displayName count="one">↑↑↑</displayName>
 				<displayName count="other">↑↑↑</displayName>
 				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName draft="contributed">↑↑↑</displayName>
-				<displayName count="one" draft="contributed">↑↑↑</displayName>
-				<displayName count="other" draft="contributed">↑↑↑</displayName>
 			</currency>
 			<currency type="CNY">
 				<displayName>↑↑↑</displayName>

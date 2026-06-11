@@ -1315,6 +1315,10 @@ annotations.
 			<type key="ss" type="standard" scope="core">↑↑↑</type>
 			<type key="t0" type="und">↑↑↑</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">↑↑↑</typeValue>
+			<typeValue type="yes" draft="unconfirmed">↑↑↑</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">↑↑↑</measurementSystemName>
 			<measurementSystemName type="UK">U.K.</measurementSystemName>
@@ -2184,7 +2188,7 @@ annotations.
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">.</numericDateSeparator>
+						<numericDateSeparator draft="provisional">/</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -2298,6 +2302,12 @@ annotations.
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -3242,7 +3252,6 @@ annotations.
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">↑↑↑</regionFormat>
@@ -4595,7 +4604,9 @@ annotations.
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
+					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -5261,9 +5272,7 @@ annotations.
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
-					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

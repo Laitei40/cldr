@@ -1407,6 +1407,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Tắt</type>
 			<type key="ss" type="standard" scope="core">Bật</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Tắt</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Bật</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">Hệ mét</measurementSystemName>
 			<measurementSystemName type="UK">Hệ Anh</measurementSystemName>
@@ -2444,19 +2448,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					</intervalFormats>
 				</dateTimeFormats>
 			</calendar>
-			<calendar type="ethiopic-amete-alem">
-				<eras>
-					<eraNames>
-						<era type="0" draft="contributed">↑↑↑</era>
-					</eraNames>
-					<eraAbbr>
-						<era type="0" draft="contributed">↑↑↑</era>
-					</eraAbbr>
-					<eraNarrow>
-						<era type="0" draft="contributed">↑↑↑</era>
-					</eraNarrow>
-				</eras>
-			</calendar>
 			<calendar type="generic">
 				<dateFormats>
 					<dateFormatLength type="full">
@@ -3075,7 +3066,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">/</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -3185,6 +3176,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">h 'giờ' B – h 'giờ' B</greatestDifference>
@@ -4699,7 +4696,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>Giờ {0}</regionFormat>
 			<regionFormat type="daylight">Giờ mùa hè {0}</regionFormat>
@@ -6020,13 +6016,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight draft="contributed">AKDT</daylight>
 				</short>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic draft="contributed">Giờ Almaty</generic>
-					<standard draft="contributed">Giờ Chuẩn Almaty</standard>
-					<daylight draft="contributed">Giờ Mùa Hè Almaty</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>Giờ Amazon</generic>
@@ -6091,21 +6080,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Giờ Apia</generic>
 					<standard>Giờ Chuẩn Apia</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic draft="contributed">Giờ Aqtau</generic>
-					<standard draft="contributed">Giờ Chuẩn Aqtau</standard>
-					<daylight draft="contributed">Giờ Mùa Hè Aqtau</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic draft="contributed">Giờ Aqtobe</generic>
-					<standard draft="contributed">Giờ Chuẩn Aqtobe</standard>
-					<daylight draft="contributed">Giờ Mùa Hè Aqtobe</daylight>
+					<daylight>Giờ Mùa Hè Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -6406,11 +6383,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Giờ Mùa Hè Miền Tây Greenland</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard draft="contributed">Giờ Chuẩn Guam</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>Giờ Chuẩn Vùng Vịnh</standard>
@@ -6559,11 +6531,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Giờ Kyrgystan</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard draft="contributed">Giờ Lanka</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>Giờ Quần Đảo Line</standard>
@@ -6574,13 +6541,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>Giờ Lord Howe</generic>
 					<standard>Giờ Chuẩn Lord Howe</standard>
 					<daylight>Giờ Mùa Hè Lord Howe</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic draft="contributed">Giờ Ma Cao</generic>
-					<standard draft="contributed">Giờ Chuẩn Ma Cao</standard>
-					<daylight draft="contributed">Giờ Mùa Hè Ma Cao</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -6698,11 +6658,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>Giờ Mùa Hè Fernando de Noronha</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard draft="contributed">Giờ Quần Đảo Bắc Mariana</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>Giờ Novosibirsk</generic>
@@ -6782,13 +6737,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>Giờ Bình Nhưỡng</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic draft="contributed">Giờ Qyzylorda</generic>
-					<standard draft="contributed">Giờ Chuẩn Qyzylorda</standard>
-					<daylight draft="contributed">Giờ Mùa Hè Qyzylorda</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>Giờ Reunion</standard>
@@ -6815,9 +6763,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Giờ Samoa</generic>
 					<standard>Giờ Chuẩn Samoa</standard>
-					<daylight>Giờ ban ngày Samoa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -7461,9 +7407,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				<displayName>Nhân dân tệ (hải ngoại)</displayName>
 				<displayName count="other">nhân dân tệ (hải ngoại)</displayName>
 				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<symbol draft="contributed">↑↑↑</symbol>
 			</currency>
 			<currency type="CNY">
 				<displayName>Nhân dân tệ</displayName>

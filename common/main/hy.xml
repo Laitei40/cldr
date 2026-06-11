@@ -1069,6 +1069,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Անջ․</type>
 			<type key="ss" type="standard" scope="core">Միաց․</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Անջ․</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Միաց․</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">Մետրական</measurementSystemName>
 			<measurementSystemName type="UK">Անգլիական</measurementSystemName>
@@ -1740,8 +1744,8 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">/</numericDateSeparator>
-						<numericTimeSeparator draft="provisional">.</numericTimeSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
+						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
 						<dateTimeFormat>
@@ -1848,6 +1852,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0} – {1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>{0} – {1}</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">B h–ից B h-ը</greatestDifference>
@@ -2648,7 +2658,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">↑↑↑</regionFormat>
@@ -3991,7 +4000,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>Ապիայի ժամանակ</generic>
 					<standard>Ապիայի ստանդարտ ժամանակ</standard>
+					<daylight>Ապիայի ամառային ժամանակ</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4640,9 +4651,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>Սամոայի ժամանակ</generic>
 					<standard>Սամոայի ստանդարտ ժամանակ</standard>
-					<daylight>Սամոայի ամառային ժամանակ</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

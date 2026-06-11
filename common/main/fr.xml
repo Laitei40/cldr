@@ -1570,6 +1570,10 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			<type key="ss" type="none" scope="core">Désactivé</type>
 			<type key="ss" type="standard" scope="core">Activé</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Désactivé</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Activé</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">métrique</measurementSystemName>
 			<measurementSystemName type="UK">impérial</measurementSystemName>
@@ -3254,7 +3258,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">/</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -3362,6 +3366,12 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -4863,7 +4873,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 		<timeZoneNames>
 			<hourFormat>+HH:mm;−HH:mm</hourFormat>
 			<gmtFormat>UTC{0}</gmtFormat>
-			<gmtZeroFormat>UTC</gmtZeroFormat>
 			<gmtUnknownFormat>↑↑↑</gmtUnknownFormat>
 			<regionFormat>heure : {0}</regionFormat>
 			<regionFormat type="daylight">{0} (heure d’été)</regionFormat>
@@ -6179,13 +6188,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>heure d’été de l’Alaska</daylight>
 				</long>
 			</metazone>
-			<metazone type="Almaty">
-				<long>
-					<generic>heure d’Alma Ata</generic>
-					<standard>heure normale d’Alma Ata</standard>
-					<daylight>heure d’été d’Alma Ata</daylight>
-				</long>
-			</metazone>
 			<metazone type="Amazon">
 				<long>
 					<generic>heure de l’Amazonie</generic>
@@ -6230,21 +6232,9 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>heure d’Apia</generic>
 					<standard>heure normale d’Apia</standard>
-				</long>
-			</metazone>
-			<metazone type="Aqtau">
-				<long>
-					<generic>heure d’Aktaou</generic>
-					<standard>heure normale d’Aktaou</standard>
-					<daylight>heure d’été d’Aktaou</daylight>
-				</long>
-			</metazone>
-			<metazone type="Aqtobe">
-				<long>
-					<generic>heure d’Aqtöbe</generic>
-					<standard>heure normale d’Aqtöbe</standard>
-					<daylight>heure d’été d’Aqtöbe</daylight>
+					<daylight>heure d’été d’Apia</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -6543,11 +6533,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>heure d’été de l’Ouest du Groenland</daylight>
 				</long>
 			</metazone>
-			<metazone type="Guam">
-				<long>
-					<standard>heure de Guam</standard>
-				</long>
-			</metazone>
 			<metazone type="Gulf">
 				<long>
 					<standard>heure du Golfe</standard>
@@ -6688,11 +6673,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>heure du Kirghizistan</standard>
 				</long>
 			</metazone>
-			<metazone type="Lanka">
-				<long>
-					<standard draft="unconfirmed">heure de Lanka</standard>
-				</long>
-			</metazone>
 			<metazone type="Line_Islands">
 				<long>
 					<standard>heure des îles de la Ligne</standard>
@@ -6703,13 +6683,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<generic>heure de Lord Howe</generic>
 					<standard>heure normale de Lord Howe</standard>
 					<daylight>heure d’été de Lord Howe</daylight>
-				</long>
-			</metazone>
-			<metazone type="Macau">
-				<long>
-					<generic draft="unconfirmed">heure de Macao</generic>
-					<standard draft="unconfirmed">heure normale de Macao</standard>
-					<daylight draft="unconfirmed">heure d’été de Macao</daylight>
 				</long>
 			</metazone>
 			<metazone type="Magadan">
@@ -6827,11 +6800,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<daylight>heure d’été de Fernando de Noronha</daylight>
 				</long>
 			</metazone>
-			<metazone type="North_Mariana">
-				<long>
-					<standard>heure des îles Mariannes du Nord</standard>
-				</long>
-			</metazone>
 			<metazone type="Novosibirsk">
 				<long>
 					<generic>heure de Novossibirsk</generic>
@@ -6916,13 +6884,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 					<standard>heure de Pyongyang</standard>
 				</long>
 			</metazone>
-			<metazone type="Qyzylorda">
-				<long>
-					<generic draft="unconfirmed">heure de Kyzylorda</generic>
-					<standard draft="unconfirmed">heure normale de Kyzylorda</standard>
-					<daylight draft="unconfirmed">heure d’été de Kyzylorda</daylight>
-				</long>
-			</metazone>
 			<metazone type="Reunion">
 				<long>
 					<standard>heure de La Réunion</standard>
@@ -6949,9 +6910,7 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>heure des Samoa</generic>
 					<standard>heure normale des Samoa</standard>
-					<daylight>heure d’été des Samoa</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">
@@ -7858,12 +7817,6 @@ Warnings: All cp values have U+FE0F characters removed. See /annotationsDerived/
 				<displayName count="one">yuan chinois (zone extracôtière)</displayName>
 				<displayName count="other">yuans chinois (zone extracôtière)</displayName>
 				<symbol>↑↑↑</symbol>
-			</currency>
-			<currency type="CNX">
-				<displayName draft="unconfirmed">dollar de la Banque populaire chinoise</displayName>
-				<displayName count="one" draft="unconfirmed">dollar de la Banque populaire chinoise</displayName>
-				<displayName count="other" draft="unconfirmed">dollars de la Banque populaire chinoise</displayName>
-				<symbol draft="unconfirmed">↑↑↑</symbol>
 			</currency>
 			<currency type="CNY">
 				<displayName>yuan renminbi chinois</displayName>

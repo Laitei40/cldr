@@ -117,6 +117,14 @@ The name of the timezone for “{0}”. Note: before translating, be sure to rea
 
 ## OTHER Descriptions
 
+### TypeValues: On/Off
+
+- `localeDisplayNames/typeValues/typeValue[@type="(no|yes)"]`
+
+These values are used to select certain BCP47 types that have On versus Off meaning.
+
+For more details, see [On Off].
+
 ### Type: Collation: Core
 
 - `localeDisplayNames/types/type[@key="collation"][@type="%anyAttribute"][@scope="core"]`
@@ -283,7 +291,12 @@ The character or short string used to indicate that more information is availabl
 
 Locale-specific characters used to replace parentheses in locale names. Note: before translating, be sure to read [Nested Bracket Replacement].
 
+###
 
+- `characters/placeholderBoundarySpacing`
+
+The character or short string used as a separator. For example, a space may be used to separate timezone “UTC+1” and time “13:59” to produce “UTC+1 13:59” rather than “UTC+113:59”.
+See [Preventing Digit-Digit Concatenations].
 
 ###
 
@@ -876,7 +889,7 @@ Provide the {3}, {2} version of the name for the day period code “{4}”. To s
 
 ###
 
-- `dates/calendars/calendar[@type="%A"]/dayOfMonths/dayOfMonthContext[@type="%A"]/dayOfMonthWidth[@type="%A"]/dayOfMonth[@ordinal="%A"]`
+- `dates/calendars/calendar[@type="%anyAttribute"]/dayOfMonths/dayOfMonthContext[@type="%anyAttribute"]/dayOfMonthWidth[@type="%anyAttribute"]/dayOfMonth[@ordinal="%anyAttribute"]`
 
 Provide the {2} and {3} version of the name for day-of-the-month {4}.
 Some locales/calendars may require formats for specific days (like day 1 of the month), which can be arranged.
@@ -990,14 +1003,14 @@ Provide a name for “the {1} of SOME_DATE”. For more information, please see 
 
 ###
 
-- `dates/calendars/calendar[@type="%N"]/dateTimeFormats/numericSeparators/numericTimeSeparator`
+- `dates/calendars/calendar[@type="%anyAttribute"]/dateTimeFormats/numericSeparators/numericTimeSeparator`
 
 Provide the separator for a numeric time pattern. These are the default separators between numeric fields of HOUR, MINUTE, and/or SECOND, such as 8:35:59 or Tuesday 8:35 am.
 Note: before translating, be sure to read [Numeric datetime separators].
 
 ###
 
-- `dates/calendars/calendar[@type="%N"]/dateTimeFormats/numericSeparators/numericDateSeparator`
+- `dates/calendars/calendar[@type="%anyAttribute"]/dateTimeFormats/numericSeparators/numericDateSeparator`
 
 Provide the separator for a numeric date pattern. These are the default separators between numeric fields of YEAR, MONTH, and/or DAY, such as 2026-09-13 AD or Tuesday, 9/13.
 Note: before translating, be sure to read [Date Time Patterns].
@@ -1162,7 +1175,7 @@ A name for a character or sequence. For more information, see [Short Character N
 
 - `annotations/annotation[@cp="%anyAttribute"]`
 
-A set of keywords for a character or sequence. For more information, see [Short Character Names].
+A set of keywords for a character or sequence. Keywords must be delimited by `|` (U+007C). For more information, see [Short Character Names].
 
 ## References
 
@@ -1187,6 +1200,7 @@ All links should be cldr.unicode.org/translation/
 [Exemplar Characters]: https://cldr.unicode.org/translation/core-data/exemplars
 [Grammatical Inflection]: https://cldr.unicode.org/translation/grammatical-inflection
 [Locale Option Names]: https://cldr.unicode.org/translation/displaynames/locale-option-names-key
+[On Off]: https://cldr.unicode.org/translation/displaynames/locale-option-names-key#on-off
 [Core Name]: https://cldr.unicode.org/translation/displaynames/locale-option-names-key#core-names
 [Language Names]: https://cldr.unicode.org/translation/displaynames/languagelocale-names
 [Lists]: https://cldr.unicode.org/translation/miscellaneous-displaying-lists
@@ -1214,3 +1228,4 @@ All links should be cldr.unicode.org/translation/
 [Numeric datetime separators]: https://cldr.unicode.org/translation#numeric-datetime-separators
 [Dual Standard/Daylight format]: https://cldr.unicode.org/translation#dual-standarddaylight-format
 [UTC Timezone Display Patterns]: https://cldr.unicode.org/translation#utc-timezone-display-patterns
+[Preventing Digit-Digit Concatenations]: https://cldr.unicode.org/translation#preventing-digit-digit-concatenations

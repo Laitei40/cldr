@@ -1230,6 +1230,10 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			<type key="ss" type="none" scope="core" draft="contributed">Aus</type>
 			<type key="ss" type="standard" scope="core" draft="contributed">Ein</type>
 		</types>
+		<typeValues>
+			<typeValue type="no" draft="unconfirmed">Aus</typeValue>
+			<typeValue type="yes" draft="unconfirmed">Ein</typeValue>
+		</typeValues>
 		<measurementSystemNames>
 			<measurementSystemName type="metric">↑↑↑</measurementSystemName>
 			<measurementSystemName type="UK">↑↑↑</measurementSystemName>
@@ -1866,7 +1870,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 				</timeFormats>
 				<dateTimeFormats>
 					<numericSeparators>
-						<numericDateSeparator draft="provisional">-</numericDateSeparator>
+						<numericDateSeparator draft="provisional">.</numericDateSeparator>
 						<numericTimeSeparator draft="provisional">:</numericTimeSeparator>
 					</numericSeparators>
 					<dateTimeFormatLength type="full">
@@ -1979,6 +1983,12 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 						<appendItem request="Timezone">↑↑↑</appendItem>
 					</appendItems>
 					<intervalFormats>
+						<intervalFormatRanges>
+							<intervalFormatRange type="mixed" draft="provisional">{0} – {1}</intervalFormatRange>
+
+							<intervalFormatRange type="non-numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+							<intervalFormatRange type="numeric" draft="provisional">{0}–{1}</intervalFormatRange>
+						</intervalFormatRanges>
 						<intervalFormatFallback>↑↑↑</intervalFormatFallback>
 						<intervalFormatItem id="Bh">
 							<greatestDifference id="B">↑↑↑</greatestDifference>
@@ -2778,7 +2788,6 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 		<timeZoneNames>
 			<hourFormat>↑↑↑</hourFormat>
 			<gmtFormat>↑↑↑</gmtFormat>
-			<gmtZeroFormat>↑↑↑</gmtZeroFormat>
 			<gmtUnknownFormat draft="contributed">↑↑↑</gmtUnknownFormat>
 			<regionFormat>↑↑↑</regionFormat>
 			<regionFormat type="daylight">↑↑↑</regionFormat>
@@ -4118,7 +4127,9 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Apia">
 				<long>
+					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
+					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Arabian">
@@ -4767,9 +4778,7 @@ CLDR data files are interpreted according to the LDML specification (http://unic
 			</metazone>
 			<metazone type="Samoa">
 				<long>
-					<generic>↑↑↑</generic>
 					<standard>↑↑↑</standard>
-					<daylight>↑↑↑</daylight>
 				</long>
 			</metazone>
 			<metazone type="Seychelles">

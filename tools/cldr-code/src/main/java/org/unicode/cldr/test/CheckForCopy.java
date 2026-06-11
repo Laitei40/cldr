@@ -28,7 +28,7 @@ public class CheckForCopy extends FactoryCheckCLDR {
                                     + "|intervalFormatItem"
                                     + "|exemplarCharacters\\[@type=\"(currencySymbol|index)\"]"
                                     + "|scientificFormat"
-                                    + "|timeZoneNames/(hourFormat|gmtFormat|gmtZeroFormat|gmtUnknownFormat)"
+                                    + "|timeZoneNames/(hourFormat|gmtFormat|gmtUnknownFormat)"
                                     + "|dayPeriod"
                                     + "|(monthWidth|dayWidth|quarterWidth)\\[@type=\"(narrow|abbreviated)\"]"
                                     + "|exemplarCity"
@@ -69,7 +69,8 @@ public class CheckForCopy extends FactoryCheckCLDR {
                     .add(
                             "^//ldml/localeDisplayNames/types/type\\[@key=\"collation\"]\\[@type=\"standard\"]",
                             true)
-                    .add("^//ldml/typographicNames", true);
+                    .add("^//ldml/typographicNames", true)
+                    .add("^//ldml/localeDisplayNames/typeValues/typeValue\\[@type=\"no\"]", true);
 
     static UnicodeSet ASCII_LETTER = new UnicodeSet("[a-zA-Z]").freeze();
 
